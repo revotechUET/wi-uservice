@@ -1,0 +1,40 @@
+from src.ml_models import result
+from src.ml_models import validator
+from sklearn.linear_model import HuberRegressor
+
+
+{{#models}}
+{{#model}}
+{{classname}}Parameters = [
+    {{#vars}}
+    {
+        "name": "{{name}}",
+        "type": {{dataType}}
+    },
+    {{/vars}}
+]
+
+
+class {{classname}}Validator(validator.BaseValidator):
+    def __init__(self, **kwargs):
+        self.props = {{classname}}Parameters
+        validator.BaseValidator.doInit(self, **kwargs)
+
+    def __call__(self):
+        return_params = super({{classname}}Validator, self).__call__()
+        # additional validation goes here
+        return return_params
+
+
+class {{classname}}Result(result.SuccessResult):
+    def __init__(self, mean_squared_error, mean_absolute_error, *args, **kwargs):
+        super({{classname}}Result, self).__init__()
+        self.add("mean_squared_error", mean_squared_error)
+        self.add("mean_absolute_error", mean_absolute_error)
+
+
+class {{classname}}Estimator(HuberRegressor):
+    pass
+
+{{/model}}
+{{/models}}

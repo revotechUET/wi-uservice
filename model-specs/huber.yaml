@@ -1,0 +1,35 @@
+swagger: "2.0"
+
+paths:
+  huber:
+    post:
+      operationId: huber
+      description: "Create Huber model"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/Huber"
+      responses:
+        201:
+          description: "Create huber model success"
+          schema:
+              $ref: "#definitions/CreateSuccess"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+
+definitions:
+  Huber:
+    type: "object"
+    properties:
+      epsilon:
+        type: "number"
+      max_iter:
+        type: "integer"
+      alpha:
+        type: "number"
+      tol:
+        type: "number"
+

@@ -1,0 +1,32 @@
+swagger: "2.0"
+
+paths:
+  decision_tree:
+    post:
+      operationId: decision_tree
+      description: "Create Decision Tree Regression model"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/DecisionTree"
+      responses:
+        201:
+          description: "Create Decision Tree model success"
+          schema:
+              $ref: "#definitions/CreateSuccess"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+
+definitions:
+  DecisionTree:
+    type: "object"
+    properties:
+      max_depth:
+        type: "integer"
+      max_features:
+        type: "integer"
+      min_sample_split:
+        type: "integer"

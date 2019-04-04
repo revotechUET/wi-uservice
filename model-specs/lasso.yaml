@@ -1,0 +1,32 @@
+swagger: "2.0"
+
+paths:
+  lasso:
+    post:
+      operationId: lasso
+      description: "Create Lasso model"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/Lasso"
+      responses:
+        201:
+          description: "Create lasso model success"
+          schema:
+              $ref: "#definitions/CreateSuccess"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+
+definitions:
+  Lasso:
+    type: "object"
+    properties:
+      max_iter:
+        type: "integer"
+      alpha:
+        type: "number"
+      tol:
+        type: "number"

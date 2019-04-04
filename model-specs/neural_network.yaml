@@ -1,0 +1,41 @@
+swagger: "2.0"
+
+paths:
+  neural_network:
+    post:
+      operationId: neural_network
+      description: "Create Neural Network model"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/NeuralNetwork"
+      responses:
+        201:
+          description: "Create Neuarl Network model success"
+          schema:
+              $ref: "#definitions/CreateSuccess"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+
+definitions:
+  NeuralNetwork:
+    type: "object"
+    properties:
+      solver:
+        type: "string"
+      activation:
+        type: "string"
+      max_iter:
+        type: "integer"
+      learning_rate_init:
+        type: "number"
+      tol: 
+        type: "number"
+      hidden_layer_sizes:
+        type: "array"
+        items:
+          type: "integer"
+
