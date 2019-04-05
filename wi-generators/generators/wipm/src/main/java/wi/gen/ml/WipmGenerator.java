@@ -95,6 +95,9 @@ public class WipmGenerator extends DefaultCodegen implements CodegenConfig {
     modelTemplateFiles.put(
       "model.mustache", // the template to use
       ".py");       // the extension for each file to write
+    modelTemplateFiles.put(
+      "estimator.mustache", // the template to use
+      "_Estimator.py");       // the extension for each file to write
 
     /**
      * Api classes.  You can write classes for each Api file with the apiTemplateFiles map.

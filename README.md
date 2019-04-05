@@ -16,7 +16,7 @@
 Generate service
 
 ```bash
-$ install [model_name]
+$ ./generate.sh
 ```
 
 Run service

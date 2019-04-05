@@ -1,0 +1,35 @@
+swagger: "2.0"
+
+paths:
+  huber:
+    post:
+      operationId: tungalgo
+      description: "Create tung-algo model"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/TungAlgo"
+      responses:
+        201:
+          description: "Create huber model success"
+          schema:
+              $ref: "#definitions/CreateSuccess"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+
+definitions:
+  TungAlgo:
+    type: "object"
+    properties:
+      epsilon:
+        type: "number"
+      max_iter:
+        type: "integer"
+      alpha:
+        type: "number"
+      tol:
+        type: "number"
+
