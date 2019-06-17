@@ -189,10 +189,10 @@ paths:
         - in: "body"
           name: "body"
           schema:
-            $ref: "#/definitions/"
+            $ref: "#/definitions/Lasso"
       responses:
         201:
-          description: "Create huber model success"
+          description: "Create Lasso model success"
           schema:
               $ref: "#/definitions/CreateSuccess"
         default:
@@ -233,9 +233,12 @@ definitions:
     properties:
       max_iter:
         type: "integer"
+        default: 1000
       alpha:
         type: "number"
+        default: 1.0
       tol:
         type: "number"
+        default: 0.0001
 
 

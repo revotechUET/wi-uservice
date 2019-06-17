@@ -192,7 +192,7 @@ paths:
             $ref: "#/definitions/Huber"
       responses:
         201:
-          description: "Create huber model success"
+          description: "Create Huber model success"
           schema:
               $ref: "#/definitions/CreateSuccess"
         default:
@@ -233,11 +233,15 @@ definitions:
     properties:
       epsilon:
         type: "number"
+        default: 1.35
       max_iter:
         type: "integer"
+        default: 100
       alpha:
         type: "number"
+        default: 0.0001
       tol:
         type: "number"
+        default: 1e-5
 
 
