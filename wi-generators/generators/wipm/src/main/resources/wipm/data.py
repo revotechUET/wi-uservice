@@ -25,15 +25,15 @@ def create(dims):
 def push(bucket_id, data):
     try:
         arr_check = np.array(data)
-        if isinstance(arr_check, np.object):
+        if not isinstance(arr_check, np.object):
             raise ValueError("Bad data")
         doc_id = bson.ObjectId(bucket_id)
         doc = db.training_data.find_one({"_id": doc_id})
         if doc["dims"] != arr_check.shape[1]:
             raise ValueError("Bad data")
         else:
-            doc["data"].entend(data)
-            db.training_data.find_one_and_update({"_id": doc_id}, doc)
+            doc["data"].extend(data)
+            db.training_data.find_one_and_update({"_id": doc_id}, {"$set": {"data": doc["data"]}})
     except Exception as err:
         return {"message": str(err)}
     else:

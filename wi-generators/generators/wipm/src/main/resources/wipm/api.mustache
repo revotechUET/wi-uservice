@@ -8,7 +8,10 @@ from src.ml_models import result
 {{#operation}}
 @model_helper.parse_body_request
 def {{operationId}}(parameters):
-    model_id = secrets.token_urlsafe(16)
+    if parameters.get('model_id'):
+      model_id = parameters.get('model_id')
+    else:
+      model_id = secrets.token_urlsafe(16)
     try:
         model_helper.model_create(model_id, "{{operationId}}", parameters)
     except Exception as err:

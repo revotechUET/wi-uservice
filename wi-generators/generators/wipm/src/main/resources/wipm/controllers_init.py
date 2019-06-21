@@ -5,10 +5,12 @@ from src import config
 from src import ml_models
 
 from .create import *
-
+import numpy as np
 
 @helper.parse_body_request
 def train(model_id, features, target):
+    features = np.array(features).T
+    target = np.array(target)
     try:
         result_ml = helper.model_train(model_id, features, target)
     except Exception as err:
@@ -22,6 +24,7 @@ def train(model_id, features, target):
 
 @helper.parse_body_request
 def predict(model_id, features):
+    features = np.array(features).T
     try:
         target = helper.model_predict(model_id, features)
     except Exception as err:

@@ -190,12 +190,12 @@ paths:
       parameters:
         - in: "body"
           name: "body"
-          schema:
-            $ref: "#/definitions/"
+          schema:{{#models}}{{#model}}
+            $ref: "#/definitions/{{classname}}"{{/model}}{{/models}}
     {{/value}}
       responses:
-        201:
-          description: "Create huber model success"
+        201:{{#models}}{{#model}}
+          description: "Create {{classname}} model success"{{/model}}{{/models}}
           schema:
               $ref: "#/definitions/CreateSuccess"
         default:
@@ -236,12 +236,14 @@ definitions:
   {{key}}:
     type: "object"
     properties:
+      model_id:
+        type: "string"
+        example: "test_01"
     {{#value}}
       {{key}}:
       {{#value}}
-        type: "{{type}}"
+        type: "{{type}}"{{#example}}
+        example: {{{example}}}{{/example}}
       {{/value}}
     {{/value}}
-
   {{/components}}
-
