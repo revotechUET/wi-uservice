@@ -26,7 +26,10 @@ definitions:
     properties:
       max_iter:
         type: "integer"
+        default: 10
       alpha:
         type: "number"
+        default: 1.0
       tol:
         type: "number"
+        default: 0.0001

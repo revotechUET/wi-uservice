@@ -26,10 +26,14 @@ definitions:
     properties:
       epsilon:
         type: "number"
+        example: 1.35
       max_iter:
         type: "integer"
+        example: 10
       alpha:
         type: "number"
+        example: 0.0001
       tol:
         type: "number"
+        example: 0.00001
 
