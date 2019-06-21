@@ -12,6 +12,9 @@ import io.swagger.models.properties.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.openapitools.codegen.utils.ModelUtils;
+import static org.openapitools.codegen.utils.StringUtils.camelize;
+
 import java.util.*;
 import java.io.File;
 
@@ -130,11 +133,15 @@ public class WipmGenerator extends DefaultCodegen implements CodegenConfig {
     supportingFiles.add(new SupportingFile("config.py", "src", "config.py"));
     supportingFiles.add(new SupportingFile("data.py", "src/controllers", "data.py"));
     supportingFiles.add(new SupportingFile("controllers_init.py", "src/controllers", "__init__.py"));
-    supportingFiles.add(new SupportingFile("ml_models_init.py", "src/ml_models", "__init__.py"));
+//    supportingFiles.add(new SupportingFile("ml_models_init.py", "src/ml_models", "__init__.py"));
     supportingFiles.add(new SupportingFile("result.py", "src/ml_models", "result.py"));
     supportingFiles.add(new SupportingFile("validator.py", "src/ml_models", "validator.py"));
     supportingFiles.add(new SupportingFile("__init__.py", "src", "__init__.py"));
     supportingFiles.add(new SupportingFile("openapi.mustache", "src/specs", "openapi.yaml"));
+    supportingFiles.add(new SupportingFile("ml_model_init.mustache", "src/ml_models", "__init__.py"));
+    supportingFiles.add(new SupportingFile("test_requests.mustache", "src/tests", "test_requests.py"));
+    supportingFiles.add(new SupportingFile("__init__package.mustache", "src/ml_models/models", "__init__.py"));
+    supportingFiles.add(new SupportingFile("setup.mustache", "", "setup.py"));
   }
 
   /**
@@ -207,7 +214,7 @@ public class WipmGenerator extends DefaultCodegen implements CodegenConfig {
   **/
   public void extractApisAndModels(Map<String, Object> objs) {
     OpenAPI openAPI = (OpenAPI) objs.get("openAPI");
-
+    //System.out.println(openAPI);
     /*
      * Convert properties components from Map to Set
      */
@@ -216,6 +223,8 @@ public class WipmGenerator extends DefaultCodegen implements CodegenConfig {
     for (Map.Entry<String, Schema> schema : schemas) {
       if (schema.getValue().getProperties() != null) {
         Set<Map.Entry<String, Schema>> schemaPropertiesSet = schema.getValue().getProperties().entrySet();
+        //System.out.println("schema properties");
+        //System.out.println(schemaPropertiesSet);
         componentsSet.put(schema.getKey(), schemaPropertiesSet);
       }
     }
@@ -245,6 +254,54 @@ public class WipmGenerator extends DefaultCodegen implements CodegenConfig {
     extractApisAndModels(objs);
     return super.postProcessSupportingFileData(objs);
   }
-  
+
+  @Override
+  public String toExampleValue(Schema p) { 
+    if (ModelUtils.isBooleanSchema(p)) {
+      if (p.getExample() != null) {
+        if (p.getExample().toString().equalsIgnoreCase("false"))
+          return "False";
+        else
+          return "True";
+      }
+    } else if (ModelUtils.isDateSchema(p)) {
+      // TODO
+    } else if (ModelUtils.isDateTimeSchema(p)) {
+      // TODO
+    } else if (ModelUtils.isNumberSchema(p)) {
+      if (p.getExample() != null) {
+        return p.getExample().toString();
+      }
+    } else if (ModelUtils.isIntegerSchema(p)) {
+      if (p.getExample() != null) {
+        return p.getExample().toString();
+      }
+    } else if (ModelUtils.isStringSchema(p)) {
+      if (p.getExample() != null) {
+        return "'" + (String) p.getExample() + "'";
+      }
+    }
+
+    return null;
+  }
+
+  @Override
+  public void setParameterExampleValue(CodegenParameter p) {
+    if (p.example != null) {
+      String example = p.example;
+      String type = p.baseType;
+      if ("String".equalsIgnoreCase(type) || "str".equalsIgnoreCase(type)) {
+        System.out.println(example);
+        example = "'" + escapeText(example) + "'";
+        p.example = example;
+        System.out.println(p.example);
+        //System.out.print(p);
+      } else {
+        super.setParameterExampleValue(p);
+      }
+    } else {
+      super.setParameterExampleValue(p);
+    }
+  }
 }
 
