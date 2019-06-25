@@ -1,4 +1,4 @@
-from sklearn.linear_model import LinearRegression as WiEstimator
+from sklearn.linear_model import Lasso as WiEstimator
 
 #class WiEstimator():
 #    '''
