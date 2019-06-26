@@ -21,6 +21,6 @@ if [[ ""$UPDATE == "1" ]]; then
 else
     echo "gen code ==> my code -- " $UPDATE
     #cp -n services/$MODEL/src/ml_models/models/${MODELNAME}_Estimator.py ./model-specs/$MODEL
-    cp ./model-specs/$MODEL/${MODELNAME}_Estimator.py services/$MODEL/src/ml_models/models
+    cp ./model-specs/$MODEL/${MODEL}_estimator.py services/$MODEL/src/ml_models/models
     mkdir services/$MODEL/static
 fi

@@ -12,8 +12,8 @@ def test_create():
     {{#vars}}'{{name}}': {{{example}}}{{#hasMore}},
     {{/hasMore}}{{/vars}}
   }
-  model_classname_lowercase = '{{classname}}'.lower(){{/model}}{{/models}}
-  res = requests.post(base_url + '/model/create/' + model_classname_lowercase,
+  #model_classname_lowercase = '{{classname}}'.lower(){{/model}}{{/models}}
+  res = requests.post(base_url + '/model/create/{{#paths}}{{key}}{{/paths}}',
                       data=json.dumps(body),
                       headers={'Content-Type': 'application/json'})
   print()

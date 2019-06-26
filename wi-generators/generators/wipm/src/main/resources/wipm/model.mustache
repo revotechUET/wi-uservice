@@ -3,12 +3,8 @@ from src.ml_models import validator
 #from sklearn.base import BaseEstimator
 {{#models}}
 {{#model}}
-from .{{classname}}_Estimator import WiEstimator
-{{/model}}
-{{/models}}
+from .{{classFilename}}_estimator import WiEstimator
 
-{{#models}}
-{{#model}}
 {{classname}}Parameters = [
     {{#vars}}
     {
@@ -17,7 +13,6 @@ from .{{classname}}_Estimator import WiEstimator
     },
     {{/vars}}
 ]
-
 
 class {{classname}}Validator(validator.BaseValidator):
     def __init__(self, **kwargs):
@@ -29,13 +24,11 @@ class {{classname}}Validator(validator.BaseValidator):
         # additional validation goes here
         return return_params
 
-
 class {{classname}}Result(result.SuccessResult):
-    def __init__(self, mean_squared_error, mean_absolute_error, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super({{classname}}Result, self).__init__()
-        self.add("mean_squared_error", mean_squared_error)
-        self.add("mean_absolute_error", mean_absolute_error)
-
+        for key, value in kwargs:
+            self.add(key, value)
 
 class {{classname}}Estimator(WiEstimator):
     pass
@@ -43,6 +36,5 @@ class {{classname}}Estimator(WiEstimator):
     #    self.estimator = WiEstimator();
     #def fit(self, X, y, *args):
     #    self.estimator.fit()
-
 {{/model}}
 {{/models}}

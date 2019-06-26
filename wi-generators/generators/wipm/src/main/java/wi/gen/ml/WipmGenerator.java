@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import org.openapitools.codegen.utils.ModelUtils;
 import static org.openapitools.codegen.utils.StringUtils.camelize;
+import static org.openapitools.codegen.utils.StringUtils.underscore;
 
 import java.util.*;
 import java.io.File;
@@ -100,7 +101,7 @@ public class WipmGenerator extends DefaultCodegen implements CodegenConfig {
       ".py");       // the extension for each file to write
     modelTemplateFiles.put(
       "estimator.mustache", // the template to use
-      "_Estimator.py");       // the extension for each file to write
+      "_estimator.py");       // the extension for each file to write
 
     /**
      * Api classes.  You can write classes for each Api file with the apiTemplateFiles map.
@@ -203,10 +204,27 @@ public class WipmGenerator extends DefaultCodegen implements CodegenConfig {
   }
 
   @Override
+  public String toModelName(String name) {
+    return org.openapitools.codegen.utils.StringUtils.camelize(name);
+  }
+
+  @Override
+  public String toModelFilename(String name) {
+    String modelFilename = org.openapitools.codegen.utils.StringUtils.underscore(toModelName(name));
+    //additionalProperties.put("modelFilename", modelFilename);
+    return modelFilename;
+  }
+
+  @Override
+  public String toOperationId(String operationId) {
+    return org.openapitools.codegen.utils.StringUtils.underscore(operationId);
+  }
+
+  @Override
   public String toApiFilename(String name) {
     return "create";
   }
-  
+ 
   /**
   * extract api and model from openAPI object 
   *

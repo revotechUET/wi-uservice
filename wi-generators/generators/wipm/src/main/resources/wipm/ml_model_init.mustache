@@ -1,6 +1,7 @@
 import os
 import shutil
 import importlib
+import re
 from functools import partial
 from sklearn.pipeline import Pipeline
 from sklearn.externals import joblib
@@ -30,6 +31,7 @@ def load_modules():
     module_files = os.listdir(models_package_dir)
     try:
         module_files.remove("__init__.py")
+        module_files.remove("__pycache__")
     except Exception:
         pass
     modules = {}
@@ -108,16 +110,14 @@ def get_validator(type_validator):
     validator_def = validator_constructors[type_validator]
     return validator_def
 
-{{#models}}{{#model}}
 def get_result(model_id):
     global result_constructors
     model_path = os.path.join(config.model_dir, model_id+'.joblib')
     model = load_model(model_path)
     for (name, model_def) in model_constructors.items():
-        if name == "{{classname}}".lower():
+        if name == {{#models}}{{#model}}"{{classFilename}}"{{/model}}{{/models}}:
             return result_constructors[name]
     raise ValueError("{} not exist".format(type(model)))
-{{/model}}{{/models}}
 
 model_constructors = {}
 validator_constructors = {}

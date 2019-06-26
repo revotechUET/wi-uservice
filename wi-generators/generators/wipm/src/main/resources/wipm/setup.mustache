@@ -3,31 +3,28 @@ from distutils.errors import DistutilsExecError
 
 from setuptools import setup, find_packages
 
-class run_test_requests(sdist):
+class RunTestRequests(sdist):
   def run(self):
     try:
       self.spawn(['pytest', 'src/tests/test_requests.py', '-v', '-s'])
     except DistutilsExecError:
       self.warn('Running test requests failed!')
-    super().run()
 
-class run_server_dev(sdist):
+class RunServerDev(sdist):
   def run(self):
     try:
       self.spawn(['gunicorn', '-c', 'dev.config.py', 'wsgi:application'])
     except DistutilsExecError:
-      self.warn('Running test requests failed!')
-    super().run()
+      self.warn('Running development server failed!')
 
-class run_server_prod(sdist):
+class RunServerProd(sdist):
   def run(self):
     try:
       self.spawn(['gunicorn', '-c', 'prod.config.py', 'wsgi:application'])
     except DistutilsExecError:
-      self.warn('Running test requests failed!')
-    super().run()
+      self.warn('Running production server failed!')
 
-NAME = {{#models}}{{#model}}"{{classname}}".lower(){{/model}}{{/models}}
+NAME = {{#models}}{{#model}}"{{classFilename}}"{{/model}}{{/models}}
 VERSION = {{#apiVersion}}'{{apiVersion}}'{{/apiVersion}}{{^apiVersion}}'1.0.1'{{/apiVersion}}
 
 REQUIRES = [
@@ -45,8 +42,8 @@ setup(
   package_data={'': ['src/specs/openapi.yaml']},
   include_package_data=True,
   cmdclass={
-    'run_test_requests': run_test_requests,
-    'run_server_dev': run_server_dev,
-    'run_server_prod': run_server_prod
+    'run_test_requests': RunTestRequests,
+    'run_server_dev': RunServerDev,
+    'run_server_prod': RunServerProd
   }
 )
