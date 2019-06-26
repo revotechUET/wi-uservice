@@ -26,9 +26,16 @@ definitions:
     properties:
       n_estimators:
         type: "integer"
+        example: 20
+      criterion:
+        type: "string"
+        example: "mse"
       max_depth:
         type: "integer"
+        example: 3
       max_features:
         type: "integer"
+        example: 2
       bootstrap:
         type: "boolean"
+        example: True

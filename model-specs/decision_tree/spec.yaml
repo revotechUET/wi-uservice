@@ -24,9 +24,15 @@ definitions:
   DecisionTree:
     type: "object"
     properties:
+      criterion:
+        type: "string"
+        example: "mse"
+      spliter:
+        type: "string"
+        example: "best"
       max_depth:
         type: "integer"
+        example: 3
       max_features:
         type: "integer"
-      min_sample_split:
-        type: "integer"
+        example: 3

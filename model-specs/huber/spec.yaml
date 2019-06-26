@@ -36,4 +36,9 @@ definitions:
       tol:
         type: "number"
         example: 0.00001
-
+      fit_intercept:
+        type: boolean
+        example: True
+      warm_start:
+        type: boolean
+        example: False

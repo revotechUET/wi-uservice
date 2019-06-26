@@ -26,13 +26,19 @@ definitions:
     properties:
       kernel:
         type: "string"
-      C:
-        type: "number"
-      gamma:
-        type: "number"
+        example: "rbf"
       degree:
         type: "integer"
+        example: 3
+      C:
+        type: "number"
+        example: 1.0
+      gamma:
+        type: "number"
+        example: 0.05
       tol:
         type: "number"
+        example: 0.001
       max_iter:
         type: "integer"
+        example: 10

@@ -24,5 +24,9 @@ definitions:
   LinearRegression:
     type: "object"
     properties:
-      degree:
-        type: "integer"
+      fit_intercept:
+        type: boolean
+        example: True
+      normalize:
+        type: boolean
+        example: False
