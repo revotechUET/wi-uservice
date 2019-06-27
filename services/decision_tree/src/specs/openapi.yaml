@@ -179,20 +179,20 @@ paths:
           schema:
             $ref: "#/definitions/Error"
 
-  /model/create/huber:
+  /model/create/decision_tree:
     post:
-      operationId: src.controllers.create.huber
+      operationId: src.controllers.create.decision_tree
       tags:
       - create
-      description: "Create Huber model"
+      description: "Create Decision Tree Regression model"
       parameters:
         - in: "body"
           name: "body"
           schema:
-            $ref: "#/definitions/Huber"
+            $ref: "#/definitions/DecisionTree"
       responses:
         201:
-          description: "Create Huber model success"
+          description: "Create DecisionTree model success"
           schema:
               $ref: "#/definitions/CreateSuccess"
         default:
@@ -228,24 +228,15 @@ definitions:
     items:
       $ref: "#/definitions/Curve"
 
-  Huber:
+  DecisionTree:
     type: "object"
     properties:
       model_id:
         type: "string"
         example: "test_01"
-      epsilon:
-        type: "number"
-        example: 1.35
-      max_iter:
+      max_depth:
         type: "integer"
-        example: 10
-      alpha:
-        type: "number"
-        example: 0.00010
-      tol:
-        type: "number"
-        example: 0.000010
-      fit_intercept:
-        type: "boolean"
-        example: true
+        example: 3
+      max_features:
+        type: "integer"
+        example: 3

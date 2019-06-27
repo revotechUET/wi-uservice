@@ -231,14 +231,15 @@ definitions:
   Lasso:
     type: "object"
     properties:
+      model_id:
+        type: "string"
+        example: "test_01"
       max_iter:
         type: "integer"
-        default: 1000
+        example: 10
       alpha:
         type: "number"
-        default: 1.0
+        example: 1.0
       tol:
         type: "number"
-        default: 0.0001
-
-
+        example: 0.00010
