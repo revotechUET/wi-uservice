@@ -21,18 +21,24 @@ paths:
             $ref: "#/definitions/Error"
 
 definitions:
-  XGBoost:
+  Xgboost:
     type: "object"
     properties:
       n_estiamtors:
         type: "integer"
+        example: 100
       max_depth:
         type: "integer"
+        example: 3
       gamma:
         type: "number"
+        example: 0.01
       booster:
         type: "string"
+        example: "gbtree"
       reg_alpha:
         type: "number"
+        example: 0.0
       reg_lamda:
         type: "number"
+        example: 1.0

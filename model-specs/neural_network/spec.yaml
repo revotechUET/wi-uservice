@@ -26,16 +26,22 @@ definitions:
     properties:
       solver:
         type: "string"
+        example: "lbfgs"
       activation:
         type: "string"
+        example: "relu"
       max_iter:
         type: "integer"
+        example: 100
       learning_rate_init:
         type: "number"
+        example: 0.005
       tol: 
         type: "number"
+        example: 0.0003
       hidden_layer_sizes:
         type: "array"
         items:
           type: "integer"
+        example: [10, 10]
 

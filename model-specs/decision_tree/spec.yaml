@@ -27,7 +27,7 @@ definitions:
       criterion:
         type: "string"
         example: "mse"
-      spliter:
+      splitter:
         type: "string"
         example: "best"
       max_depth:
