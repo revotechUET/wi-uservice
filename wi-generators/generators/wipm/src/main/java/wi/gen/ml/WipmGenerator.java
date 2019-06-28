@@ -127,7 +127,7 @@ public class WipmGenerator extends DefaultCodegen implements CodegenConfig {
      */
     supportingFiles.add(new SupportingFile("dev.config.py", "", "dev.config.py"));
     supportingFiles.add(new SupportingFile("prod.config.py", "", "prod.config.py"));
-    supportingFiles.add(new SupportingFile("README.md", "", "README.md"));
+    supportingFiles.add(new SupportingFile("README.mustache", "", "README.md"));
     supportingFiles.add(new SupportingFile("requirements.txt", "", "requirements.txt"));
     supportingFiles.add(new SupportingFile("wsgi.py", "", "wsgi.py"));
     supportingFiles.add(new SupportingFile("model_helper.py", "src", "model_helper.py"));
@@ -140,6 +140,7 @@ public class WipmGenerator extends DefaultCodegen implements CodegenConfig {
     supportingFiles.add(new SupportingFile("__init__.py", "src", "__init__.py"));
     supportingFiles.add(new SupportingFile("openapi.mustache", "src/specs", "openapi.yaml"));
     supportingFiles.add(new SupportingFile("ml_model_init.mustache", "src/ml_models", "__init__.py"));
+    supportingFiles.add(new SupportingFile("conftest.mustache", "src/tests", "conftest.py"));
     supportingFiles.add(new SupportingFile("test_requests.mustache", "src/tests", "test_requests.py"));
     supportingFiles.add(new SupportingFile("__init__package.mustache", "src/ml_models/models", "__init__.py"));
     supportingFiles.add(new SupportingFile("setup.mustache", "", "setup.py"));

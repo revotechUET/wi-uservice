@@ -4,15 +4,15 @@ import pytest
 import sys
 
 @pytest.mark.filterwarnings("ignore:DeprecationWarning")
-def test_create():
-  base_url = 'http://127.0.0.1:5000/api'
-  model_id = 'test_01'{{#models}}{{#model}}
+def test_create(port):
+  base_url = 'http://127.0.0.1:' + str(port) + '/api'
+  model_id = 'test{{#models}}{{#model}}_{{classFilename}}{{/model}}{{/models}}_01'{{#models}}{{#model}}
   body = {
     'model_id': model_id,
     {{#vars}}'{{name}}': {{{example}}}{{#hasMore}},
     {{/hasMore}}{{/vars}}
   }
-  #model_classname_lowercase = '{{classname}}'.lower(){{/model}}{{/models}}
+  {{/model}}{{/models}}
   res = requests.post(base_url + '/model/create/{{#paths}}{{key}}{{/paths}}',
                       data=json.dumps(body),
                       headers={'Content-Type': 'application/json'})
@@ -24,9 +24,9 @@ def test_create():
   assert res.status_code == 201
 
 @pytest.mark.filterwarnings("ignore:DeprecationWarning")
-def test_train():
-  base_url = 'http://127.0.0.1:5000/api'
-  model_id = 'test_01'
+def test_train(port):
+  base_url = 'http://127.0.0.1:' + str(port) + '/api'
+  model_id = 'test{{#models}}{{#model}}_{{classFilename}}{{/model}}{{/models}}_01'
   body = {
     'model_id': model_id,
     'features': [[1, 1, 2], [2, 1, 3], [1, 2, 3], [1, 2, 2]],
@@ -42,9 +42,9 @@ def test_train():
   assert res.status_code == 201
 
 @pytest.mark.filterwarnings("ignore:DeprecationWarning")
-def test_predict():
-  base_url = 'http://127.0.0.1:5000/api'
-  model_id = 'test_01'
+def test_predict(port):
+  base_url = 'http://127.0.0.1:' + str(port) + '/api'
+  model_id = 'test{{#models}}{{#model}}_{{classFilename}}{{/model}}{{/models}}_01'
   body = {
     'model_id': model_id,
     'features': [[1, 1, 2], [2, 1, 3], [1, 2, 3], [1, 2, 2]]
