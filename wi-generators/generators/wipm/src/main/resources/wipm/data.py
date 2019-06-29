@@ -11,40 +11,56 @@ except Exception:
 
 
 @parse_body_request
-def create(dims):
+def create(bucket_id, dims):
     try:
-        bucket = {"dims": dims, "data": []}
+        bucket = {"bucket_id": bucket_id, "dims": dims, "data": []}
         col = db["training_data"]
-        bucket_id = col.insert_one(bucket).inserted_id
+        col.insert_one(bucket)
+        #bucket_id = col.insert_one(bucket).inserted_id
     except Exception as err:
         return {"message": str(err)}
     else:
-        return {"message": "Create success", "bucket_id": str(bucket_id)}
+        return {"message": "Create success", "bucket_id": str(bucket_id)}, 201
 
 @parse_body_request
 def push(bucket_id, data):
     try:
-        arr_check = np.array(data)
+        arr_check = np.array(data).T
         if not isinstance(arr_check, np.object):
             raise ValueError("Bad data")
-        doc_id = bson.ObjectId(bucket_id)
-        doc = db.training_data.find_one({"_id": doc_id})
+        #doc_id = bson.ObjectId(bucket_id)
+        #doc = db.training_data.find_one({"_id": doc_id})
+        doc = db.training_data.find_one({"bucket_id": bucket_id})
         if doc["dims"] != arr_check.shape[1]:
             raise ValueError("Bad data")
         else:
-            doc["data"].extend(data)
-            db.training_data.find_one_and_update({"_id": doc_id}, {"$set": {"data": doc["data"]}})
+            doc["data"].extend(arr_check.tolist())
+            db.training_data.find_one_and_update({"bucket_id": bucket_id}, {"$set": {"data": doc["data"]}})
+            #db.training_data.find_one_and_update({"_id": doc_id}, {"$set": {"data": doc["data"]}})
     except Exception as err:
         return {"message": str(err)}
     else:
-        return {"message": "Push data success"}
+        return {"message": "Push data success"}, 201
 
 @parse_body_request
 def delete(bucket_id):
     try:
-        doc_id = bson.ObjectId(bucket_id)
-        db["training_data"].find_one_and_delete({"_id": doc_id})
+        #doc_id = bson.ObjectId(bucket_id)
+        #db["training_data"].find_one_and_delete({"_id": doc_id})
+        db.training_data.find_one_and_delete({"bucket_id": bucket_id})
     except Exception as err:
         return {"message": str(err)}
     else:
-        return {"message": "Delete success"}
+        return {"message": "Delete success"}, 201
+
+def get_data_by_bucket_id(bucket_id):
+    try:
+        doc = db.training_data.find_one({'bucket_id': bucket_id})
+        data = np.array(doc['data'])
+        features = data[:, :-1].T
+        target = data[:, -1]
+    except Exception as err:
+        print(str(err))
+        return None, None
+    else:
+        return features, target

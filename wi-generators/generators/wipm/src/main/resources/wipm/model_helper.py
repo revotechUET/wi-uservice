@@ -13,7 +13,7 @@ def parse_body_request(func):
     def modified_func(*args, **kwargs):
         request_body = connexion.request.json
         if request_body:
-            if func.__name__ not in ["train", "predict", "create", "push", "delete"]:
+            if func.__name__ not in ["train", "predict", "create", "push", "delete", "train_by_bucket_data"]:
                 # seperate model_type and parameters 
                 kwargs.update(parameters=request_body)
             else:
