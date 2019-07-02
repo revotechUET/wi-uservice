@@ -1,23 +1,35 @@
 # WIML services generator
 
 ## Requirements
-* Java (maven)
-* Python (pip)
-* MongoDB
+* Java version 1.8.0_102
+* Maven version 3.6.0
+* Python version >= 3.6
+* MongoDB version 3.6.3
+
+## Installation
+Useful links to help to install requirements on Ubuntu OS, you can search for installation on different OS.
+### Java
+<https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-on-ubuntu-18-04>
+### Maven
+<https://linuxize.com/post/how-to-install-apache-maven-on-ubuntu-18-04/>
+### Python
+Install Python via Conda, refer to <https://www.digitalocean.com/community/tutorials/how-to-install-the-anaconda-python-distribution-on-ubuntu-18-04>
+### MongoDB
+<https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04>
 
 ## Structure
 ```bash
 wi-uservice/
 ├── README.md             // this file
-├── clean.sh
-├── generate.sh           // command lines to start generating services code
-├── install-model.sh      // command lines to generate each services
-├── install.py
-├── model-list.sh         // list of model-services to generate
+├── clean.sh              // command lines to remove all generated services
+├── generate.sh           // command lines to start generating services code (execute this file to generate services)
+├── install-model.sh      // command lines to generate each services (called by generate.sh)
+├── install.py            // python file to load model and file name (called by generate.sh)
+├── model-list.sh         // list of model-services to generate (called by generate.sh)
 ├── model-specs           // specification for each model-service
-├── openapi-generator     // openapi codegen tools
+├── openapi-generator     // openapi codegen tools (submodule)
 ├── pm2                   // configuration for deployment by PM2
-├── services              // folder storing services
+├── services              // folder storing generated services
 └── wi-generators         // generator and template for generating services.
 ```
 
@@ -25,8 +37,9 @@ wi-uservice/
 ### Clone the repository from Github
 Run the command
 ```bash
-git clone https://github.com/tunghoang/wi-uservice.git
+git clone --recursive https://github.com/tunghoang/wi-uservice.git
 ```
+Note: Using `--recursive` flag to clone `openapi-generator` submodules.
 ### Build generator tools.
 Go to folder `openapi-generator` (which contains `pom.xml` file) and run command `mvn package`. Then go to folder `wi-generators/generators/wipm` (which contains `pom.xml` file) and run command `mvn package`.  
 You may need to run bellow command to use `wipm` generator as an option for generating code.
@@ -65,6 +78,9 @@ Refer to <https://pm2.io/doc/en/runtime/overview/> for more details about dealin
 ## Modify generator and template
 Generator is in `WipmGenerator.java` file in `wi-uservice/wi-generators/generators/wipm/src/main/java/wi/gen/ml` folder.  
 Template files are in `wi-generators/generators/wipm/src/main/resources/wipm`.
+
+## Modify generated code
+Refer to `README.md` of each generated code.
 
 ## Reference
 OpenAPI Generator: <https://openapi-generator.tech>  
