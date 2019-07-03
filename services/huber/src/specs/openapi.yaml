@@ -22,8 +22,11 @@ paths:
         schema:
           type: "object"
           required:
+          - bucket_id
           - dims
           properties:
+            bucket_id:
+              type: "string"
             dims:
               type: "integer"
       responses:
@@ -179,6 +182,53 @@ paths:
           schema:
             $ref: "#/definitions/Error"
 
+  /model/train_by_bucket_data:
+    post:
+      operationId: src.controllers.train_by_bucket_data
+      description: "Training model"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          type: "object"
+          required:
+          - model_id
+          - bucket_id
+          properties:
+            model_id:
+              type: "string"
+            bucket_id:
+              type: "string"
+      responses:
+        201:
+          description: "Training success"
+          schema:
+            type: "object"
+            required:
+            - message
+            properties:
+              status:
+                type: string
+                enum: 
+                - started
+                - pending
+                - success
+                - error
+              message:
+                type: "string"
+              mean_squared_error:
+                type: "number"
+              mean_absolute_error:
+                type: "number"
+              train_loss:
+                $ref: "#/definitions/Curve"
+              val_loss:
+                $ref: "#/definitions/Curve"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+  
   /model/create/huber:
     post:
       operationId: src.controllers.create.huber
@@ -249,3 +299,5 @@ definitions:
       fit_intercept:
         type: "boolean"
         example: true
+      warm_start:
+        type: "boolean"
