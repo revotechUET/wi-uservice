@@ -54,6 +54,20 @@ Read more about OpenAPI Specification v2 and v3 at <https://swagger.io/specifica
 Source: `src/ml_models/models/{{#models}}{{#model}}{{classFilename}}{{/model}}{{/models}}_estimator.py`  
 Machine learning model class. The class should be compatible with sklearn.pipeline.Pipeline class and implemented fit and predict method. It should be named as `WiEstimator` to be able to be imported from other files.
 
+## Machine learning pipeline
+Source: `src/ml_models/__init__.py`  
+Method: build_model  
+Preprocessing and machine learning model classes are used in a Pipeline. Editing components in Pipeline to make your own Pipeline.
+
+## Result of training
+Source: `src/model_helper.py`  
+Method: model_train   
+`result` parameter is used as a dict to store metrics of training process. Editing key-value pair in `result` to return your own metrics corresponding to your training.
+
+## Addition operations
+Source: `src/controllers`  
+Addition operations to handle requests should be written in `controller` folder.
+
 ## Setup file
 Source: `setup.py`  
 This file contains information for installation and commands. Information is passed as parameters in setup function of `setuptools` package. Commands are defined as subclasses of `distutils.command.sdist.sdist`.

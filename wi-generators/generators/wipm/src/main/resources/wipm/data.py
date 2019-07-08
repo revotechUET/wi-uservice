@@ -18,7 +18,7 @@ def create(bucket_id, dims):
         col.insert_one(bucket)
         #bucket_id = col.insert_one(bucket).inserted_id
     except Exception as err:
-        return {"message": str(err)}
+        return {"message": str(err)}, 400
     else:
         return {"message": "Create success", "bucket_id": str(bucket_id)}, 201
 
@@ -38,7 +38,7 @@ def push(bucket_id, data):
             db.training_data.find_one_and_update({"bucket_id": bucket_id}, {"$set": {"data": doc["data"]}})
             #db.training_data.find_one_and_update({"_id": doc_id}, {"$set": {"data": doc["data"]}})
     except Exception as err:
-        return {"message": str(err)}
+        return {"message": str(err)}, 400
     else:
         return {"message": "Push data success"}, 201
 
@@ -49,7 +49,7 @@ def delete(bucket_id):
         #db["training_data"].find_one_and_delete({"_id": doc_id})
         db.training_data.find_one_and_delete({"bucket_id": bucket_id})
     except Exception as err:
-        return {"message": str(err)}
+        return {"message": str(err)}, 400
     else:
         return {"message": "Delete success"}, 201
 
