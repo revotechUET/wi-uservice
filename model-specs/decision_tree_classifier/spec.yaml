@@ -1,0 +1,35 @@
+swagger: "2.0"
+
+paths:
+  decision_tree:
+    post:
+      operationId: decision_tree_classifier
+      description: "Create Decision Tree Classification model"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/DecisionTreeClassifier"
+      responses:
+        201:
+          description: "Create Decision Tree model success"
+          schema:
+              $ref: "#definitions/CreateSuccess"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+
+definitions:
+  DecisionTreeClassifier:
+    type: "object"
+    properties:
+      criterion:
+        type: "string"
+        example: "entropy"
+      min_samples_split:
+        type: "integer"
+        example: 5
+      min_impurity_decrease:
+        type: "number"
+        example: 0.01

@@ -1,0 +1,62 @@
+swagger: "2.0"
+
+paths:
+  neural_network:
+    post:
+      operationId: neural_network_classifier
+      description: "Create Neural Network Classification model"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/NeuralNetworkClassifier"
+      responses:
+        201:
+          description: "Create Neuarl Network model success"
+          schema:
+              $ref: "#definitions/CreateSuccess"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+
+definitions:
+  NeuralNetworkClassifier:
+    type: "object"
+    properties:
+      hidden_layer_sizes:
+        type: "array"
+        items:
+          type: "integer"
+        example: [10, 20, 10]
+      activation:
+        type: "string"
+        example: "elu"
+      algorithm:
+        type: "string"
+        example: "backprop"
+      num_epochs:
+        type: "integer"
+        example: 1000
+      optimizer:
+        type: "string"
+        example: "nadam"
+      learning_rate:
+        type: "number"
+        example: 0.001
+      warm_up:
+        type: "boolean"
+        example: False
+      decay:
+        type: "number"
+        example: 1e-6
+      population:
+        type: "integer"
+        example: 50
+      sigma:
+        type: "number"
+        example: 0.01
+      boosting_ops:
+        type: "integer"
+        example: 0
+
