@@ -1,0 +1,38 @@
+swagger: "2.0"
+
+paths:
+  random_forest:
+    post:
+      operationId: random_forest_classifier
+      description: "Create Random Forest Classifier model"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/RandomForestClassifier"
+      responses:
+        201:
+          description: "Create Random Forest model success"
+          schema:
+              $ref: "#definitions/CreateSuccess"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+
+definitions:
+  RandomForestClassifier:
+    type: "object"
+    properties:
+      num_trees:
+        type: "integer"
+        example: 20
+      criterion:
+        type: "string"
+        example: "entropy"
+      min_samples_split:
+        type: "integer"
+        example: 5
+      min_impurity_decrease:
+        type: "number"
+        example: 0.0003

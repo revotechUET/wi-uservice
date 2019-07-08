@@ -1,0 +1,35 @@
+swagger: "2.0"
+
+paths:
+  decision_tree:
+    post:
+      operationId: knn_classifier
+      description: "Create K-Nearest Neighbors Classification model"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/KNearestNeighborsClassifier"
+      responses:
+        201:
+          description: "Create K-Nearest Neighbors model success"
+          schema:
+              $ref: "#definitions/CreateSuccess"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+
+definitions:
+  KNearestNeighborsClassifier:
+    type: "object"
+    properties:
+      num_neighbors:
+        type: "integer"
+        example: 100
+      p:
+        type: "integer"
+        example: 1
+      metric:
+        type: "string"
+        example: "minkowski"

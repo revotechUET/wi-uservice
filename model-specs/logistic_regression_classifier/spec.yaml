@@ -1,0 +1,35 @@
+swagger: "2.0"
+
+paths:
+  decision_tree:
+    post:
+      operationId: logistic_regression_classifier
+      description: "Create Logistic Regression Classification model"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/LogisticRegressionClassifier"
+      responses:
+        201:
+          description: "Create Logistic Regression model success"
+          schema:
+              $ref: "#definitions/CreateSuccess"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+
+definitions:
+  LogisticRegressionTreeClassifier:
+    type: "object"
+    properties:
+      c:
+        type: "number"
+        example: 20
+      max_iter:
+        type: "integer"
+        example: 10000
+      solver:
+        type: "string"
+        example: "liblinear"

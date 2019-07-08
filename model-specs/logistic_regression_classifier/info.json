@@ -1,0 +1,4 @@
+{
+    "name": "logistic_regression_classifier",
+    "model": "LogisticRegressionClassifier"
+}
