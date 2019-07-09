@@ -2,7 +2,8 @@
  
 MODEL=$1
 MODELNAME=$2
-UPDATE=$3
+MODEL_FILENAME=$3
+UPDATE=$4
 
 CLI_JAR=./openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar
 OCLASSPATH=./wi-generators/generators/wipm/target/wipm-openapi-generator-1.0.0.jar:$CLI_JAR
@@ -21,6 +22,6 @@ if [[ ""$UPDATE == "1" ]]; then
 else
     echo "gen code ==> my code -- " $UPDATE
     #cp -n services/$MODEL/src/ml_models/models/${MODELNAME}_Estimator.py ./model-specs/$MODEL
-    cp ./model-specs/$MODEL/${MODEL}_estimator.py services/$MODEL/src/ml_models/models
+    cp ./model-specs/$MODEL/${MODEL_FILENAME}_estimator.py services/$MODEL/src/ml_models/models
     mkdir services/$MODEL/static
 fi

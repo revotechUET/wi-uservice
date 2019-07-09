@@ -24,5 +24,6 @@ if __name__ == "__main__":
     info = load_info()
     print(info['name'])
     print(info['model'])
+    print(info['modelFilename'])
     #COMMAND = f"./install-model.sh {info['name']} {info['model']} {args.update}"
     #os.system(COMMAND)
