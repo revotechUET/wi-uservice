@@ -1,0 +1,5 @@
+{
+    "name": "model_spec_template",        // folder name
+    "model": "ModelClassname",            // model class name in camel case
+    "modelFilename": "model_classname"    // model class name in snake case
+}

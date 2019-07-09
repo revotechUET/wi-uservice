@@ -1,4 +1,5 @@
 {
     "name": "decision_tree_classifier",
-    "model": "DecisionTreeClassifier"
+    "model": "DecisionTreeClassifier",
+    "modelFilename": "decision_tree_classifier"
 }

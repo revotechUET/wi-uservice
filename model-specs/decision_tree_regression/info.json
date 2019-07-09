@@ -1,0 +1,5 @@
+{
+    "name": "decision_tree_regression",
+    "model": "DecisionTree",
+    "modelFilename": "decision_tree"
+}

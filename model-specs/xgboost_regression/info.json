@@ -1,0 +1,5 @@
+{
+    "name": "xgboost_regression",
+    "model": "Xgboost",
+    "modelFilename": "xgboost"
+}

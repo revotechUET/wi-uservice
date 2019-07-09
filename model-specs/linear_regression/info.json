@@ -1,4 +1,5 @@
 {
     "name": "linear_regression",
-    "model": "LinearRegression"
+    "model": "LinearRegression",
+    "modelFilename": "linear_regression"
 }

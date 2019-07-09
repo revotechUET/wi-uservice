@@ -1,0 +1,5 @@
+{
+    "name": "huber_regression",
+    "model": "Huber",
+    "modelFilename": "huber"
+}

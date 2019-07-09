@@ -1,0 +1,5 @@
+{
+    "name": "neural_network_regression",
+    "model": "NeuralNetwork",
+    "modelFilename": "neural_network"
+}

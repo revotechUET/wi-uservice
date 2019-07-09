@@ -1,0 +1,5 @@
+{
+    "name": "random_forest_regression",
+    "model": "RandomForest",
+    "modelFilename": "random_forest"
+}

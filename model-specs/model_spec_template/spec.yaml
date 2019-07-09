@@ -1,0 +1,37 @@
+swagger: "2.0"
+
+paths:
+  lasso:
+    post:
+      operationId: model_classname
+      description: "Create model"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/ModelClassname"
+      responses:
+        201:
+          description: "Create model success"
+          schema:
+              $ref: "#definitions/CreateSuccess"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+
+definitions:
+  ModelClassname:
+    type: "object"
+    properties:
+      int_prop:
+        type: "integer"
+        example: 1
+      number_prop:
+        type: "number"
+        example: 10.0
+      array_prop:
+        type: "array"
+        items:
+          type: "number"
+        example: [1, 2, 3]

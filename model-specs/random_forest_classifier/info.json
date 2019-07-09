@@ -1,4 +1,5 @@
 {
     "name": "random_forest_classifier",
-    "model": "RandomForestClassifier"
+    "model": "RandomForestClassifier",
+    "modelFilename": "random_forest_classifier"
 }
