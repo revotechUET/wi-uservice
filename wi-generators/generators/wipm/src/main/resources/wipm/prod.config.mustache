@@ -24,7 +24,7 @@ if os.environ.get("DB_USER"):
     raw_env.append("DB_USER="+os.environ.get("DB_USER"))
     raw_env.append("DB_PASS="+os.environ.get("DB_PASS"))
 
-pidfile = None
+pidfile = "/tmp/{{#models}}{{#model}}{{classFilename}}{{/model}}{{/models}}.pid"
 umask = 0
 user = None
 group = None

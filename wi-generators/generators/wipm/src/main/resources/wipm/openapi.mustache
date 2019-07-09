@@ -288,12 +288,15 @@ definitions:
     properties:
       model_id:
         type: "string"
-        example: "test_01"
+        example: "test{{#models}}{{#model}}_{{classFilename}}{{/model}}{{/models}}_01"
     {{#value}}
       {{key}}:
       {{#value}}
-        type: "{{type}}"{{#example}}
-        example: {{{example}}}{{/example}}
+        type: "{{type}}"{{#items}}
+        items:
+          type: {{type}}{{/items}}{{#example.0}}
+        example: {{{example}}}{{/example.0}}{{^example.0}}{{#example}}
+        example: {{{example}}}{{/example}}{{/example.0}}
       {{/value}}
     {{/value}}
   {{/components}}

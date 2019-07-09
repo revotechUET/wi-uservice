@@ -125,8 +125,8 @@ public class WipmGenerator extends DefaultCodegen implements CodegenConfig {
      * entire object tree available.  If the input file has a suffix of `.mustache
      * it will be processed by the template engine.  Otherwise, it will be copied
      */
-    supportingFiles.add(new SupportingFile("dev.config.py", "", "dev.config.py"));
-    supportingFiles.add(new SupportingFile("prod.config.py", "", "prod.config.py"));
+    supportingFiles.add(new SupportingFile("dev.config.mustache", "", "dev.config.py"));
+    supportingFiles.add(new SupportingFile("prod.config.mustache", "", "prod.config.py"));
     supportingFiles.add(new SupportingFile("README.mustache", "", "README.md"));
     supportingFiles.add(new SupportingFile("requirements.txt", "", "requirements.txt"));
     supportingFiles.add(new SupportingFile("wsgi.py", "", "wsgi.py"));
@@ -298,6 +298,10 @@ public class WipmGenerator extends DefaultCodegen implements CodegenConfig {
     } else if (ModelUtils.isStringSchema(p)) {
       if (p.getExample() != null) {
         return "'" + (String) p.getExample() + "'";
+      }
+    } else if (ModelUtils.isArraySchema(p)) {
+      if (p.getExample() != null) {
+        return p.getExample().toString();
       }
     }
 
