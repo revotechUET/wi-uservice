@@ -144,6 +144,7 @@ public class WipmGenerator extends DefaultCodegen implements CodegenConfig {
     supportingFiles.add(new SupportingFile("test_requests.mustache", "src/tests", "test_requests.py"));
     supportingFiles.add(new SupportingFile("__init__package.mustache", "src/ml_models/models", "__init__.py"));
     supportingFiles.add(new SupportingFile("setup.mustache", "", "setup.py"));
+    supportingFiles.add(new SupportingFile("Dockerfile.mustache", "", "Dockerfile"));
   }
 
   /**
