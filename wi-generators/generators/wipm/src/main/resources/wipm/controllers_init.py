@@ -7,6 +7,7 @@ from src import ml_models
 from .create import *
 from .data import get_data_by_bucket_id
 import numpy as np
+import traceback
 
 @helper.parse_body_request
 def train(model_id, features, target):
@@ -16,6 +17,7 @@ def train(model_id, features, target):
         result_ml = helper.model_train(model_id, features, target)
     except Exception as err:
         config.logger.error(str(err))
+        config.logger.error(traceback.print_exc())
         err_message = ml_models.result.ErrorResult()
         return err_message()
     else:
@@ -30,6 +32,7 @@ def predict(model_id, features):
         target = helper.model_predict(model_id, features)
     except Exception as err:
         config.logger.error(str(err))
+        config.logger.error(traceback.print_exc())
         err_message = ml_models.result.ErrorResult()
         return err_message()
     else:
@@ -45,6 +48,7 @@ def train_by_bucket_data(model_id, bucket_id):
         result_ml = helper.model_train(model_id, features, target)
     except Exception as err:
         config.logger.error(str(err))
+        config.logger.error(traceback.print_exc())
         err_message = ml_models.result.ErrorResult()
         return err_message()
     else:

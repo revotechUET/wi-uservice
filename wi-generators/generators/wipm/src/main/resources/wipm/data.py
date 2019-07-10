@@ -1,14 +1,15 @@
 import numpy as np
 import bson
+import traceback
 
 from src.config import db
 from src.model_helper import parse_body_request
+from src import config
 
 try:
     db.create_collection("training_data")
 except Exception:
     pass
-
 
 @parse_body_request
 def create(bucket_id, dims):
@@ -20,6 +21,7 @@ def create(bucket_id, dims):
         col.insert_one(bucket)
         #bucket_id = col.insert_one(bucket).inserted_id
     except Exception as err:
+        config.logger.error(traceback.print_exc())
         return {"message": str(err)}, 400
     else:
         return {"message": "Create success", "bucket_id": str(bucket_id)}, 201
@@ -40,6 +42,7 @@ def push(bucket_id, data):
             db.training_data.find_one_and_update({"bucket_id": bucket_id}, {"$set": {"data": doc["data"]}})
             #db.training_data.find_one_and_update({"_id": doc_id}, {"$set": {"data": doc["data"]}})
     except Exception as err:
+        config.logger.error(traceback.print_exc())
         return {"message": str(err)}, 400
     else:
         return {"message": "Push data success"}, 201
@@ -51,6 +54,7 @@ def delete(bucket_id):
         #db["training_data"].find_one_and_delete({"_id": doc_id})
         db.training_data.find_one_and_delete({"bucket_id": bucket_id})
     except Exception as err:
+        config.logger.error(traceback.print_exc())
         return {"message": str(err)}, 400
     else:
         return {"message": "Delete success"}, 201
@@ -62,7 +66,7 @@ def get_data_by_bucket_id(bucket_id):
         features = data[:, :-1].T
         target = data[:, -1]
     except Exception as err:
-        print(str(err))
+        config.logger.error(traceback.print_exc())
         return None, None
     else:
         return features, target

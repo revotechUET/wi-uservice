@@ -2,6 +2,7 @@ import secrets
 from src import model_helper
 from src.ml_models import config
 from src.ml_models import result
+import traceback
 
 @model_helper.parse_body_request{{#operations}}{{#operation}}
 def {{operationId}}(parameters):{{/operation}}{{/operations}}
@@ -13,6 +14,7 @@ def {{operationId}}(parameters):{{/operation}}{{/operations}}
         model_helper.model_create(model_id, "{{operationId}}".lower(), parameters){{/operation}}{{/operations}}
     except Exception as err:
         config.logger.error(str(err))
+        config.logger.error(traceback.print_exc())
         err_message = result.ErrorResult()
         return err_message()
     else:
