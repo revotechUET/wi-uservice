@@ -39,3 +39,6 @@ definitions:
       bootstrap:
         type: "boolean"
         example: True
+      random_state:
+        type: "integer"
+        example: 0

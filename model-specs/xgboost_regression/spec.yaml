@@ -42,3 +42,6 @@ definitions:
       reg_lamda:
         type: "number"
         example: 1.0
+      random_state:
+        type: "integer"
+        example: 1

@@ -36,3 +36,6 @@ definitions:
       max_features:
         type: "integer"
         example: 3
+      random_state:
+        type: "integer"
+        example: 0
