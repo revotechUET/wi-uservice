@@ -1,5 +1,5 @@
 {
     "name": "huber_regression",
-    "model": "Huber",
-    "modelFilename": "huber"
+    "model": "Huber_regression",
+    "modelFilename": "huber_regression"
 }

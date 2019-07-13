@@ -70,3 +70,12 @@ def get_data_by_bucket_id(bucket_id):
         return None, None
     else:
         return features, target
+
+def get_all_buckets():
+    try:
+        buckets = db.traning_data.distinct("bucket_id")
+    except Exception as err:
+        config.logger.error(traceback.print_exc())
+        return None
+    else:
+        return buckets

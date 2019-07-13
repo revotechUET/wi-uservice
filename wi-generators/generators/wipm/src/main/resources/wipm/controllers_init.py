@@ -6,6 +6,7 @@ from src import ml_models
 
 from .create import *
 from .data import get_data_by_bucket_id
+from .data import get_all_buckets
 import numpy as np
 import traceback
 
@@ -54,3 +55,13 @@ def train_by_bucket_data(model_id, bucket_id):
     else:
         success_message = ml_models.get_result(model_id)(**result_ml)
         return success_message()
+
+@helper.parse_body_request
+def get_list_buckets():
+    buckets = get_all_buckets()
+    return buckets
+
+
+ 
+
+ 
