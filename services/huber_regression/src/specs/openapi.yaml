@@ -254,10 +254,10 @@ paths:
   /bucket/list:
     get:
       operationId: src.controllers.get_list_buckets
-      description: Returns all pets from the system that the user has access to
+      description: Returns all buckets in database 
       responses:
         200:
-          description: A list of pets.
+          description: Get list bucket in database
           schema:
             $ref: '#/definitions/Error'
         

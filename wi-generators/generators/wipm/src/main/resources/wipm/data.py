@@ -73,9 +73,16 @@ def get_data_by_bucket_id(bucket_id):
 
 def get_all_buckets():
     try:
-        buckets = db.traning_data.distinct("bucket_id")
+        buckets = db.training_data.distinct("bucket_id")
+        dim = db.training_data.distinct("dim")
+        to_return = []
+        for i in range(0, len(buckets)):
+            tmp = []
+            tmp.append(buckets[i])
+            tmp.append(dim[i])
+            to_return.append(tmp)
     except Exception as err:
         config.logger.error(traceback.print_exc())
         return None
     else:
-        return buckets
+        return to_return
