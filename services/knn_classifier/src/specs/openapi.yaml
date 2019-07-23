@@ -291,15 +291,15 @@ definitions:
   KNearestNeighborsClassifier:
     type: "object"
     properties:
-    model_id:
-      type: "string"
-      example: "test_k_nearest_neighbors_classifier_01"
-    num_neighbors:
-      type: "integer"
-      example: 100
-    p:
-      type: "integer"
-      example: 1
-    metric:
-      type: "string"
-      example: minkowski
+      model_id:
+        type: "string"
+        example: "test_k_nearest_neighbors_classifier_01"
+      num_neighbors:
+        type: "integer"
+        example: 100
+      p:
+        type: "integer"
+        example: 1
+      metric:
+        type: "string"
+        example: minkowski
