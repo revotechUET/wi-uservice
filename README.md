@@ -92,7 +92,7 @@ docker network create networkName
 ```
 Then pull mongo image from Docker Hub and link it to the network you have created
 
-Now you ready to moove on
+Now you ready to move on
 
 ## Modify generator and template
 Generator is in `WipmGenerator.java` file in `wi-uservice/wi-generators/generators/wipm/src/main/java/wi/gen/ml` folder.  
