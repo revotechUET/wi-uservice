@@ -5,6 +5,7 @@
 * Maven version 3.6.0
 * Python version >= 3.6
 * MongoDB version 3.6.3
+* Docker Desktop
 
 ## Installation
 Useful links to help to install requirements on Ubuntu OS, you can search for installation on different OS.
@@ -16,6 +17,9 @@ Useful links to help to install requirements on Ubuntu OS, you can search for in
 Install Python via Conda, refer to <https://www.digitalocean.com/community/tutorials/how-to-install-the-anaconda-python-distribution-on-ubuntu-18-04>
 ### MongoDB
 <https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04>
+
+### Docker 
+<https://docs.docker.com/install/linux/docker-ce/ubuntu/>
 
 ## Structure
 ```bash
@@ -74,6 +78,21 @@ Go to `pm2` folder and run the command to deploy services.
 pm2 start ecosystem.config.js
 ```
 Refer to <https://pm2.io/doc/en/runtime/overview/> for more details about dealing with PM2.
+
+## Deploy with Docker
+Config to deploy services which Docker are specified in Dockerfile
+At wi-uservice run command:
+```bash
+docker build -t imageName .
+docker run --network=networkName --link=mongoImage --p portNumber:5001 --name containerName imageId/imageName
+```
+Before run docker command, you need to create a docker network with command:
+```
+docker network create networkName
+```
+Then pull mongo image from Docker Hub and link it to the network you have created
+
+Now you ready to moove on
 
 ## Modify generator and template
 Generator is in `WipmGenerator.java` file in `wi-uservice/wi-generators/generators/wipm/src/main/java/wi/gen/ml` folder.  
