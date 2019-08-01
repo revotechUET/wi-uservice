@@ -1,0 +1,5 @@
+{
+	"name": "supervise_som",
+	"model": "SOM",
+	"modelFilename": "supervise_som"
+}

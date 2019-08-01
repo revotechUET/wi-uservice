@@ -1,0 +1,32 @@
+swagger: "2.0"
+
+paths:
+  som:
+    post:
+      operationId: som
+      description: "Create SOM model"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/SOM"
+      responses:
+        201:
+          description: "Create SOM model success"
+          schema:
+              $ref: "#definitions/CreateSuccess"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+
+definitions:
+  SOM:
+    type: "object"
+    properties:
+      n_cols:
+        type: "integer"
+        example: 3
+      n_rows:
+        type: "integer"
+        example: 3
