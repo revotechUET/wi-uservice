@@ -1,0 +1,5 @@
+{
+    "name": "non_linear_regressor",
+    "model": "NonLinearRegressor",
+    "modelFilename": "non_linear_regressor"
+}

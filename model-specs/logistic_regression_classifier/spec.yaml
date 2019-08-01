@@ -1,7 +1,7 @@
 swagger: "2.0"
 
 paths:
-  decision_tree:
+  logistic_regression_classifier:
     post:
       operationId: logistic_regression_classifier
       description: "Create Logistic Regression Classification model"

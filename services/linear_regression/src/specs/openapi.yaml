@@ -229,20 +229,20 @@ paths:
           schema:
             $ref: "#/definitions/Error"
   
-  /model/create/huber:
+  /model/create/linear_regression:
     post:
-      operationId: src.controllers.create.huber
+      operationId: src.controllers.create.linear_regression
       tags:
       - create
-      description: "Create Huber model"
+      description: "Create Linear Regression  model"
       parameters:
         - in: "body"
           name: "body"
           schema:
-            $ref: "#/definitions/Huber"
+            $ref: "#/definitions/LinearRegression"
       responses:
         201:
-          description: "Create Huber model success"
+          description: "Create LinearRegression model success"
           schema:
               $ref: "#/definitions/CreateSuccess"
         default:
@@ -250,17 +250,16 @@ paths:
           schema:
             $ref: "#/definitions/Error"
 
-
+  
   /bucket/list:
     get:
       operationId: src.controllers.get_list_buckets
-      description: Returns all buckets in database 
+      description: Return all buckets in database
       responses:
         200:
-          description: Get list bucket in database
+          description: Get list bucket successfully
           schema:
             $ref: '#/definitions/Error'
-        
           
 definitions:
   Error:

@@ -229,20 +229,20 @@ paths:
           schema:
             $ref: "#/definitions/Error"
   
-  /model/create/huber:
+  /model/create/logistic_regression_classifier:
     post:
-      operationId: src.controllers.create.huber
+      operationId: src.controllers.create.logistic_regression_classifier
       tags:
       - create
-      description: "Create Huber model"
+      description: "Create Logistic Regression Classification model"
       parameters:
         - in: "body"
           name: "body"
           schema:
-            $ref: "#/definitions/Huber"
+            $ref: "#/definitions/LogisticRegressionTreeClassifier"
       responses:
         201:
-          description: "Create Huber model success"
+          description: "Create LogisticRegressionTreeClassifier model success"
           schema:
               $ref: "#/definitions/CreateSuccess"
         default:
@@ -250,17 +250,16 @@ paths:
           schema:
             $ref: "#/definitions/Error"
 
-
+  
   /bucket/list:
     get:
       operationId: src.controllers.get_list_buckets
-      description: Returns all buckets in database 
+      description: Return all buckets in database
       responses:
         200:
-          description: Get list bucket in database
+          description: Get list bucket successfully
           schema:
             $ref: '#/definitions/Error'
-        
           
 definitions:
   Error:
@@ -289,12 +288,12 @@ definitions:
     items:
       $ref: "#/definitions/Curve"
 
-  LogisticRegressionClassifier:
+  LogisticRegressionTreeClassifier:
     type: "object"
     properties:
       model_id:
         type: "string"
-        example: "test_logistic_regression_classifier_01"
+        example: "test_logistic_regression_tree_classifier_01"
       c:
         type: "number"
         example: 20.0

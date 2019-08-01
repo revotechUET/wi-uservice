@@ -1,0 +1,39 @@
+swagger: "2.0"
+
+paths:
+  non_linear_regressor:
+    post:
+      operationId: non_linear_regressor
+      description: "Create model"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/NonLinearRegressor"
+      responses:
+        201:
+          description: "Create model success"
+          schema:
+              $ref: "#definitions/CreateSuccess"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+
+definitions:
+  NonLinearRegressor:
+    type: "object"
+    properties:
+      string_function:
+        type: "string"
+        example: "a*x1**2+b*log(x2)+c*x3"
+      varialbes:
+        type: "array"
+        items:
+          type: "string"
+        example: ['x1','x2', 'x3']
+      parameters:
+        type: "array"
+        items:
+          type: "string"
+        example: ['a','b','c']

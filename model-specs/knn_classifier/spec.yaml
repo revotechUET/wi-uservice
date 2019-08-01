@@ -1,7 +1,7 @@
 swagger: "2.0"
 
 paths:
-  decision_tree:
+  knn:
     post:
       operationId: knn_classifier
       description: "Create K-Nearest Neighbors Classification model"

@@ -1,0 +1,6 @@
+{
+  "src/tests/test_requests.py::test_create": true,
+  "src/tests/test_requests.py::test_predict": true,
+  "src/tests/test_requests.py::test_train": true,
+  "src/tests/test_requests.py::test_train_by_bucket_data": true
+}

@@ -1,0 +1,9 @@
+[
+  "src/tests/test_requests.py::test_create",
+  "src/tests/test_requests.py::test_train",
+  "src/tests/test_requests.py::test_create_bucket_data",
+  "src/tests/test_requests.py::test_push_bucket_data",
+  "src/tests/test_requests.py::test_train_by_bucket_data",
+  "src/tests/test_requests.py::test_predict",
+  "src/tests/test_requests.py::test_delete_bucket_data"
+]

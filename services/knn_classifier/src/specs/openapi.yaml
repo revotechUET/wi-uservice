@@ -229,20 +229,20 @@ paths:
           schema:
             $ref: "#/definitions/Error"
   
-  /model/create/huber:
+  /model/create/knn:
     post:
-      operationId: src.controllers.create.huber
+      operationId: src.controllers.create.knn_classifier
       tags:
       - create
-      description: "Create Huber model"
+      description: "Create K-Nearest Neighbors Classification model"
       parameters:
         - in: "body"
           name: "body"
           schema:
-            $ref: "#/definitions/Huber"
+            $ref: "#/definitions/KNearestNeighborsClassifier"
       responses:
         201:
-          description: "Create Huber model success"
+          description: "Create KNearestNeighborsClassifier model success"
           schema:
               $ref: "#/definitions/CreateSuccess"
         default:
@@ -250,17 +250,16 @@ paths:
           schema:
             $ref: "#/definitions/Error"
 
-
+  
   /bucket/list:
     get:
       operationId: src.controllers.get_list_buckets
-      description: Returns all buckets in database 
+      description: Return all buckets in database
       responses:
         200:
-          description: Get list bucket in database
+          description: Get list bucket successfully
           schema:
             $ref: '#/definitions/Error'
-        
           
 definitions:
   Error:
@@ -288,6 +287,7 @@ definitions:
     type: "array"
     items:
       $ref: "#/definitions/Curve"
+
   KNearestNeighborsClassifier:
     type: "object"
     properties:
