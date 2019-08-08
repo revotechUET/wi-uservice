@@ -1,0 +1,106 @@
+version: "3.3"
+services:
+
+  combination_ensemble_som:
+    build: ./services/combination_ensemble_som/
+    container_name: combination_ensemble_som
+    image: combination_ensemble_som
+    ports:
+      - "5002:5001"
+    networks:
+      - wi-network
+
+  decision_tree_classifier:
+    build: ./services/decision_tree_classifier/
+    container_name: decision_tree_classifier
+    image: decision_tree_classifier
+    ports:
+      - "5003:5001"
+    networks:
+      - wi-network
+
+  decision_tree_regression:
+    build: ./services/decision_tree_regression/
+    container_name: decision_tree_regression
+    image: decision_tree_regression
+    ports:
+    - "5004:5001"
+    networks:
+    - wi-network
+
+  distribution_ensemble_som:
+    build: ./services/distribution_ensemble_som/
+    container_name: distribution_ensemble_som
+    image: distribution_ensemble_som
+    ports:
+    - "5005:5001"
+    networks:
+    - wi-network
+
+  huber_regression:
+    build: ./services/huber_regression/
+    container_name: huber_regression
+    image: huber_regression
+    ports:
+    - "5006:5001"
+    networks:
+    - wi-network
+
+  knn_classifier:
+    build: ./services/knn_classifier/
+    container_name: knn_classifier
+    image: knn_classifier
+    ports:
+    - "5007:5001"
+    networks:
+    - wi-network
+
+  lasso_regression:
+    build: ./services/lasso_regression/
+    container_name: lasso_regression
+    image: lasso_regression
+    ports:
+    - "5008:5001"
+    networks:
+    - wi-network
+
+  linear_regression:
+    build: ./services/linear_regression/
+    container_name: linear_regression
+    image: linear_regression
+    ports:
+    - "5009:5001"
+    networks:
+    - wi-network
+
+  logistic_regression_classifier:
+    build: ./services/logistic_regression_classifier/
+    container_name: logistic_regression_classifier
+    image: logistic_regression_classifier
+    ports:
+    - "5010:5001"
+    networks:
+    - wi-network
+
+  neural_network_classifier:
+    build: ./services/neural_network_classifier/
+    container_name: neural_network_classifier
+    image: neural_network_classifier
+    ports:
+    - "5011:5001"
+    networks:
+    - wi-network
+
+  neural_network_regression:
+    build: ./services/neural_network_regression/
+    container_name: neural_network_regression
+    image: neural_network_regression
+    ports:
+    - "5012:5001"
+    networks:
+    - wi-network
+
+networks:
+  wi-network:
+    external:
+      name: wi-network
