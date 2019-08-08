@@ -35,6 +35,7 @@ wi-uservice/
 ├── pm2                   // configuration for deployment by PM2
 ├── services              // folder storing generated services
 └── wi-generators         // generator and template for generating services.
+└── docker-compose.yaml   // docker-compose file for services
 ```
 
 ## Usage
@@ -82,16 +83,25 @@ Refer to <https://pm2.io/doc/en/runtime/overview/> for more details about dealin
 ## Deploy with Docker
 Config to deploy services which Docker are specified in Dockerfile
 At wi-uservice run command:
+Create a docker volume:
 ```bash
-docker build -t imageName .
-docker run --network=networkName --link=mongoImage --p portNumber:5001 --name containerName imageId/imageName
+docker volume create wi_volume
 ```
-Before run docker command, you need to create a docker network with command:
+Create a docker network:
+```bash
+docker network create wi_network
 ```
-docker network create networkName
+Build a mongo container with command:
+```bash
+docker run -dit -p 27017:27017 -v wi_volume:/data/db --network=wi_network --name wi_mongodb mongo:latest
 ```
-Then pull mongo image from Docker Hub and link it to the network you have created
+Inspect mongo container and get ip of mongo container then in dev.config.py, modify DB_HOST as mongo ip
 
+At wi-uservice run :
+```bash
+docker-compose build
+docker-compose up
+```
 Now you ready to move on
 
 ## Modify generator and template
