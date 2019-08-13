@@ -61,6 +61,7 @@ def build_model(model_type, params):
     # Checking 
     support_type = model_constructors.keys()
     assert (model_type in support_type), 'Expected one of value {}'.format(','.join(support_type))
+    print(params)
 
     constructorFunc = model_constructors[model_type]
 

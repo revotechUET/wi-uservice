@@ -11,7 +11,7 @@ def knn_classifier(parameters):
     else:
         model_id = secrets.token_urlsafe(16)
     try:
-        model_helper.model_create(model_id, "knn_classifier".lower(), parameters)
+        model_helper.model_create(model_id, "k_nearest_neighbors_classifier".lower(), parameters)
     except Exception as err:
         config.logger.error(str(err))
         config.logger.error(traceback.print_exc())

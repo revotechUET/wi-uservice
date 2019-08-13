@@ -308,10 +308,10 @@ definitions:
         example: gbtree
       reg_alpha:
         type: "number"
-        example: 0.0
+        example: 0.1
       reg_lamda:
         type: "number"
-        example: 1.0
+        example: 1.1
       random_state:
         type: "integer"
         example: 1

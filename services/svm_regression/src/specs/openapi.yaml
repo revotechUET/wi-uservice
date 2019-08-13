@@ -302,7 +302,7 @@ definitions:
         example: 3
       C:
         type: "number"
-        example: 1.0
+        example: 1.1
       gamma:
         type: "number"
         example: 0.05

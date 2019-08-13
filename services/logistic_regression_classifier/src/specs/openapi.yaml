@@ -296,7 +296,7 @@ definitions:
         example: "test_logistic_regression_tree_classifier_01"
       c:
         type: "number"
-        example: 20.0
+        example: 20.1
       max_iter:
         type: "integer"
         example: 10000

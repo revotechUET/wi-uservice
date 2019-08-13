@@ -299,7 +299,7 @@ definitions:
         example: 10
       alpha:
         type: "number"
-        example: 1.0
+        example: 1.1
       tol:
         type: "number"
         example: 0.00010
