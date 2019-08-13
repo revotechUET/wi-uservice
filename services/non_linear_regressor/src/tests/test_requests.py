@@ -12,7 +12,7 @@ def test_create(port):
   body = {
     'model_id': model_id,
     'string_function': 'a*x1**2+b*log(x2)+c*x3',
-    'varialbes': [x1, x2, x3],
+    'variables': [x1, x2, x3],
     'parameters': [a, b, c]
   }
   

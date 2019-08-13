@@ -27,7 +27,7 @@ definitions:
       string_function:
         type: "string"
         example: "a*x1**2+b*log(x2)+c*x3"
-      varialbes:
+      variables:
         type: "array"
         items:
           type: "string"

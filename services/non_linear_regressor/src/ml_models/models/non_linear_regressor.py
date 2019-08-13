@@ -11,7 +11,7 @@ NonLinearRegressorParameters = [
         "type": str
     },
     {
-        "name": "varialbes",
+        "name": "variables",
         "type": List
     },
     {
