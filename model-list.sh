@@ -1,2 +1,2 @@
 #MODELS=(huber_regression)
-MODELS=(logistic_regression_classifier)
+MODELS=(svm_regression)
