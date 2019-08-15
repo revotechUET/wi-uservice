@@ -1,4 +1,4 @@
-FROM revotech2017/wi-python-ml-common:common1
+FROM revotech2017/wi-python-ml-common:common2
 
 # Setup
 ADD setup.py /
