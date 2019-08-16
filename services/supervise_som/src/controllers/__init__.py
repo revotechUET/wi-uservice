@@ -23,7 +23,7 @@ def train(*args, **kwargs):
     model_params['model__verbose'] = True
 
     X_train = np.array(features).T
-    y_train = np.array(target)
+    y_train = np.array(target).astype(int)
 
     try:
         result_ml = helper.model_train(model_id, X_train, y_train, **model_params)
@@ -52,14 +52,26 @@ def predict(model_id, features):
         return success_message()
 
 @helper.parse_body_request
-def train_by_bucket_data(model_id, bucket_id):
+def train_by_bucket_data(*args, **kwargs):
+    body = kwargs.get('body')
+    bucket_id = body.get('bucket_id')
+    model_id = body.get('model_id')
     features, target = get_data_by_bucket_id(bucket_id)
     features = features.T
+    model_params_name = ["subset_size", 'unsup_num_iters', 'unsup_batch_size', 'sup_num_iters', 'sup_batch_size',
+                        'neighborhood', 'learning_rate', 'learning_decay_rate', 'sigma', 'sigma_decay_rate']
+    model_params = {'model__{}'.format(p): v for p, v in body.items() if p in model_params_name}
+    print(model_params)
+    model_params['model__verbose'] = True
+
+    X_train = np.array(features)
+    y_train = np.array(target).astype(int)
+
+
     try:
-        result_ml = helper.model_train(model_id, features, target)
+        result_ml = helper.model_train(model_id, X_train, y_train, **model_params)
     except Exception as err:
         config.logger.error(str(err))
-        config.logger.error(traceback.print_exc())
         err_message = ml_models.result.ErrorResult()
         return err_message()
     else:
