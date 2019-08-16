@@ -120,9 +120,9 @@ paths:
             # features_selection:
             #   type: "string"
             #   enum: ['random', 'weights']
-            # weights_init:
-            #   type: "string"
-            #   enum: ['random', 'sample', 'pca']
+            weights_init:
+              type: "string"
+              enum: ['random', 'sample', 'pca']
             subset_size:
               type: "number"
             unsup_num_iters:
@@ -278,9 +278,9 @@ paths:
             # features_selection:
             #   type: "string"
             #   enum: ['random', 'weights']
-            # weights_init:
-            #   type: "string"
-            #   enum: ['random', 'sample', 'pca']
+            weights_init:
+              type: "string"
+              enum: ['random', 'sample', 'pca']
             bucket_id :
               type: "string"
             subset_size:

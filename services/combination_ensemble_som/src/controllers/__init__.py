@@ -76,9 +76,9 @@ def train_by_bucket_data(*args, **kwargs):
     print(model_params)
     model_params['model__verbose'] = True
 
-    X_train = np.array(features).T
+    X_train = np.array(features)
     y_train = np.array(target)
-
+    print(X_train.shape, y_train.shape)
     try:
         result_ml = helper.model_train(model_id, X_train, y_train, **model_params)
     except Exception as err:
