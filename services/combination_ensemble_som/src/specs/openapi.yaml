@@ -212,6 +212,51 @@ paths:
             $ref: "#/definitions/Error"
 
   /model/train_by_bucket_data:
+    # post:
+    #   operationId: src.controllers.train_by_bucket_data
+    #   description: "Training model"
+    #   parameters:
+    #   - in: "body"
+    #     name: "body"
+    #     schema:
+    #       type: "object"
+    #       required:
+    #       - model_id
+    #       - bucket_id
+    #       properties:
+    #         model_id:
+    #           type: "string"
+    #         bucket_id:
+    #           type: "string"
+    #   responses:
+    #     201:
+    #       description: "Training success"
+    #       schema:
+    #         type: "object"
+    #         required:
+    #         - message
+    #         properties:
+    #           status:
+    #             type: string
+    #             enum:
+    #             - started
+    #             - pending
+    #             - success
+    #             - error
+    #           message:
+    #             type: "string"
+    #           mean_squared_error:
+    #             type: "number"
+    #           mean_absolute_error:
+    #             type: "number"
+    #           train_loss:
+    #             $ref: "#/definitions/Curve"
+    #           val_loss:
+    #             $ref: "#/definitions/Curve"
+    #     default:
+    #       description: "Unexpected error"
+    #       schema:
+    #         $ref: "#/definitions/Error"
     post:
       operationId: src.controllers.train_by_bucket_data
       description: "Training model"
@@ -222,12 +267,46 @@ paths:
           type: "object"
           required:
           - model_id
-          - bucket_id
+        
           properties:
             model_id:
               type: "string"
-            bucket_id:
+            # features:
+            #   $ref: "#/definitions/Features"
+            # target:
+            #   $ref: "#/definitions/Curve"
+            # features_selection:
+            #   type: "string"
+            #   enum: ['random', 'weights']
+            # weights_init:
+            #   type: "string"
+            #   enum: ['random', 'sample', 'pca']
+            bucket_id :
               type: "string"
+            subset_size:
+              type: "number"
+            unsup_num_iters:
+              type: "integer"
+            unsup_batch_size:
+              type: "integer"
+            sup_num_iters:
+              type: "integer"
+            sup_batch_size:
+              type: "integer"
+            neighborhood:
+              type: "string"
+              enum: ['bubble', 'gaussian']
+            learning_rate:
+              type: "number"
+            learning_decay_rate:
+              type: "number"
+            sigma:
+              type: "number"
+            sigma_decay_rate:
+              type: "number"
+            
+
+
       responses:
         201:
           description: "Training success"
