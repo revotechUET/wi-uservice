@@ -117,9 +117,9 @@ paths:
               $ref: "#/definitions/Features"
             target:
               $ref: "#/definitions/Curve"
-            # weights_init:
-            #   type: "string"
-            #   enum: ['random', 'sample', 'pca']
+            features_selection:
+              type: "string"
+              enum: ['random', 'weights']
             subset_size:
               type: "number"
             unsup_num_iters:
@@ -219,12 +219,37 @@ paths:
           type: "object"
           required:
           - model_id
-          - bucket_id
           properties:
             model_id:
               type: "string"
             bucket_id:
               type: "string"
+            features_selection:
+              type: "string"
+              enum: ['random', 'weights']
+            subset_size:
+              type: "number"
+            unsup_num_iters:
+              type: "integer"
+            unsup_batch_size:
+              type: "integer"
+            sup_num_iters:
+              type: "integer"
+            sup_batch_size:
+              type: "integer"
+            neighborhood:
+              type: "string"
+              enum: ['bubble', 'gaussian']
+            learning_rate:
+              type: "number"
+            learning_decay_rate:
+              type: "number"
+            sigma:
+              type: "number"
+            sigma_decay_rate:
+              type: "number"
+
+
       responses:
         201:
           description: "Training success"

@@ -60,3 +60,8 @@ def model_predict(model_id, features):
     target = model.predict(features)
     return target.tolist()
 
+def model_load(model_id):
+    model_path = os.path.join(config.model_dir, model_id+'.joblib')
+    
+    return ml_models.load_model(model_path)
+    

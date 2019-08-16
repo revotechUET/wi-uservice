@@ -1,1 +1,1 @@
-from detection.ensemble.combination_networks import CombinationSomLvqNetworks as WiEstimator
+from detection.ensemble.combination_networks import DistributionSomLvqNetworks as WiEstimator

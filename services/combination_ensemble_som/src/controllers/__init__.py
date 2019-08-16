@@ -19,7 +19,6 @@ def train(*args, **kwargs):
     model_params_name = ["subset_size", 'unsup_num_iters', 'unsup_batch_size', 'sup_num_iters', 'sup_batch_size',
                         'neighborhood', 'learning_rate', 'learning_decay_rate', 'sigma', 'sigma_decay_rate']
     model_params = {'model__{}'.format(p): v for p, v in body.items() if p in model_params_name}
-    print(model_params)
     model_params['model__verbose'] = True
 
     X_train = np.array(features).T
@@ -77,7 +76,7 @@ def train_by_bucket_data(*args, **kwargs):
     model_params['model__verbose'] = True
 
     X_train = np.array(features)
-    y_train = np.array(target)
+    y_train = np.array(target).astype(int)
     print(X_train.shape, y_train.shape)
     try:
         result_ml = helper.model_train(model_id, X_train, y_train, **model_params)
