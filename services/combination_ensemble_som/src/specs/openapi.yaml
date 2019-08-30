@@ -9,7 +9,7 @@ schemes:
   - https
 host: "18.136.46.99:8083"
 
-basePath: "/nation_ensemble_som/api"
+basePath: "//api"
 
 paths:
   /data:
