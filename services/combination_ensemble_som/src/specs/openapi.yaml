@@ -6,10 +6,10 @@ info:
   description: "WI machine learning service"
 
 schemes:
-- http
-- https
+  - https
+host: "18.136.46.99:8083"
 
-basePath: "/api"
+basePath: "/nation_ensemble_som/api"
 
 paths:
   /data:
