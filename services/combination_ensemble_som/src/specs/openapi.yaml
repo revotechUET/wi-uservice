@@ -6,8 +6,8 @@ info:
   description: "WI machine learning service"
 
 schemes:
-  - https
-host: "18.136.46.99:8083"
+- http
+- https
 
 basePath: "/api"
 
