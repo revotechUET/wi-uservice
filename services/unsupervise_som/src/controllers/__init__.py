@@ -57,8 +57,7 @@ def train_by_bucket_data(*args, **kwargs):
     model_id = body.get('model_id')
     features, target = get_data_by_bucket_id(bucket_id)
     features = features.T
-    model_params_name = ["subset_size", 'unsup_num_iters', 'unsup_batch_size', 'sup_num_iters', 'sup_batch_size',
-                        'neighborhood', 'learning_rate', 'learning_decay_rate', 'sigma', 'sigma_decay_rate']
+    model_params_name = ["weights_init", 'num_iters', 'batch_size','neighborhood', 'learning_rate', 'learning_decay_rate', 'sigma', 'sigma_decay_rate', 'num_clusters']
     model_params = {'model__{}'.format(p): v for p, v in body.items() if p in model_params_name}
     print(model_params)
     model_params['model__verbose'] = True
