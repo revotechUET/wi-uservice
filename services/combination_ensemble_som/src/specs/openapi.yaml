@@ -9,7 +9,7 @@ schemes:
 - http
 - https
 
-basePath: "/api"
+basePath: "./api"
 
 paths:
   /data:
