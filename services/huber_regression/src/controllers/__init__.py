@@ -58,4 +58,6 @@ def train_by_bucket_data(model_id, bucket_id):
 @helper.parse_body_request
 def get_list_buckets():
     return get_all_buckets()
-  
+
+def dummy():
+    return {"message": "Are you trying to access Huber Regression"}, 201

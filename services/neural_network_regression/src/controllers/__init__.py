@@ -59,3 +59,5 @@ def train_by_bucket_data(model_id, bucket_id):
 def get_list_buckets():
     return get_all_buckets()
   
+def dummy():
+    return {"message": "Are you trying to access Neural Network Regression"}, 201

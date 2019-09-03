@@ -54,3 +54,6 @@ def train_by_bucket_data(model_id, bucket_id):
     else:
         success_message = ml_models.get_result(model_id)(**result_ml)
         return success_message()
+
+def dummy():
+    return {"message": "Are you trying to access Decision Tree Regression"}, 201

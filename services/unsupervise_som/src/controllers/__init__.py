@@ -179,3 +179,5 @@ def get_model(model_id):
         success_message.add("distributionMaps", distribution_maps_data)
         success_message.add("visualizationMap", visualization_map_data)
         return success_message()
+def dummy():
+    return {"message": "Are you trying to access Unsupervise SOM"}, 201

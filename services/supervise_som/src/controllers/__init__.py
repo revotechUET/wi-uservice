@@ -183,4 +183,5 @@ def get_model(model_id):
         return success_message()
  
 
- 
+def dummy():
+    return {"message": "Are you trying to access Supervise Som"}, 201

@@ -17,7 +17,11 @@ def create(bucket_id, dims):
         bucket = {"bucket_id": bucket_id, "dims": dims, "data": []}
         col = db["training_data"]
         if col.find_one({"bucket_id": bucket_id}) is not None:
-          return {"message": "Bucket data has been existed"}, 400
+         db.training_data.find_one_and_update(
+            {"bucket_id": bucket_id},
+            {"$set": {"data": []}}
+          )
+         return {"message": "Bucket data refresh"}, 201
         col.insert_one(bucket)
         #bucket_id = col.insert_one(bucket).inserted_id
     except Exception as err:

@@ -1,0 +1,17 @@
+description: "WI machine learning service"
+
+schemes:
+- http
+- https
+
+basePath: "/"
+
+paths:
+  /:
+    get:
+      operationId: src.controllers.dummy
+      summary: "Test"
+      description: "Làm ơn đi mà"
+      responses:
+        200:
+          description: Combination Ensemble SOM
