@@ -1,10 +1,11 @@
 FROM revotech2017/wi-python-ml-common:common2
 
+WORKDIR /app
 # Setup
 ADD setup.py /
 ADD dev.config.py /
 ADD wsgi.py /
-ADD . /
+ADD . /app
 
 RUN pip3 install git+https://github.com/KienMN/wi-ml-toolkit
 
