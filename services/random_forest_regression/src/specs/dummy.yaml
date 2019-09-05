@@ -1,4 +1,9 @@
-description: "WI machine learning service"
+swagger: "2.0"
+
+info:
+  title: "WIPM"
+  version: "1.0"
+  description: "WI machine learning service"
 
 schemes:
 - http
