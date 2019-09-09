@@ -19,7 +19,7 @@ def create(bucket_id, dims):
         if col.find_one({"bucket_id": bucket_id}) is not None:
          db.training_data.find_one_and_update(
             {"bucket_id": bucket_id},
-            {"$set": {"data": []}}
+            {"$set": {"data": [], "dims" : dims}}
           )
          return {"message": "Bucket data refresh"}, 201
         col.insert_one(bucket)
