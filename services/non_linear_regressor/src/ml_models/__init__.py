@@ -65,8 +65,8 @@ def build_model(model_type, params):
     constructorFunc = model_constructors[model_type]
 
     estimator = Pipeline([
-        ('minmax-scaler', MinMaxScaler()),
-        ('standard-scaler', StandardScaler()),
+        # ('minmax-scaler', MinMaxScaler()),
+        # ('standard-scaler', StandardScaler()),
         ("model", constructorFunc(**params))
     ])
     return estimator

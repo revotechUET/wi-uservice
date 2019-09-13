@@ -45,7 +45,7 @@ def model_train(model_id, features, target):
     x_train, y_train = features, target
     x_test, y_test = features, target
 
-    print(x_train, y_train)
+    print(type(model))
     model.fit(x_train, y_train)
     y_pred = model.predict(x_test)
     result["mean_squared_error"] = metrics.mean_squared_error(y_test, y_pred)
