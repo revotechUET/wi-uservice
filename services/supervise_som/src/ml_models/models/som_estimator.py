@@ -1,1 +1,1 @@
-from pip.competitive_learning import CombineSomLvq as WiEstimator
+from detection.competitive_learning import CombineSomLvq as WiEstimator
