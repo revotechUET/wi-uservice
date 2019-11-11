@@ -61,13 +61,11 @@ def train_by_bucket_data(*args, **kwargs):
     model_params = {'model__{}'.format(p): v for p, v in body.items() if p in model_params_name}
     print(model_params)
     model_params['model__verbose'] = True
-
     X_train = np.array(features)
     y_train = np.array(target).astype(int)
-
-
     try:
         result_ml = helper.model_train(model_id, X_train, y_train, **model_params)
+        
     except Exception as err:
         config.logger.error(str(err))
         err_message = ml_models.result.ErrorResult()
@@ -100,7 +98,7 @@ def get_model(model_id):
         inversed_competitive_layer_weights = scaler.inverse_transform(model._competitive_layer_weights)
         scaled_competitive_layer_weights = inversed_competitive_layer_weights / np.amax(inversed_competitive_layer_weights, axis = 0)
 
-        tmp_label = model.cluster_label.copy().reshape(n_rows, n_cols)
+        tmp_label = model.node_label.copy().reshape(n_rows, n_cols)
 
         distribution_maps_data = []
         visualization_map_data = []
@@ -172,8 +170,8 @@ def get_model(model_id):
 
         fitted_model = {
             "inversedCompetitiveWeights": inversed_competitive_layer_weights.tolist(),
-            "nodesLabel": model.cluster_label.tolist(),
-        }
+            "nodesLabel": model.node_label.tolist()
+        }   
 
         success_message.add("fitted_model", fitted_model)
         success_message.add("distributionMaps", distribution_maps_data)

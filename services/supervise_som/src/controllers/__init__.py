@@ -61,9 +61,8 @@ def train_by_bucket_data(*args, **kwargs):
     model_params_name = ['unsup_num_iters', 'sup_num_iters', 'sup_batch_size',
                         'neighborhood', 'learning_rate', 'learning_decay_rate', 'sigma', 'sigma_decay_rate']
     model_params = {'model__{}'.format(p): v for p, v in body.items() if p in model_params_name}
-    print(model_params)
+    # print(model_params)
     model_params['model__verbose'] = True
-
     X_train = np.array(features)
     y_train = np.array(target).astype(int)
 
