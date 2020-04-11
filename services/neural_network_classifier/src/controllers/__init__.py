@@ -10,6 +10,7 @@ from .data import get_all_buckets
 import numpy as np
 import traceback
 
+
 @helper.parse_body_request
 def train(model_id, features, target):
     features = np.array(features).T
