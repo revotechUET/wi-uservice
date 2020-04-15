@@ -98,7 +98,7 @@ def get_model(model_id):
         inversed_competitive_layer_weights = scaler.inverse_transform(model._competitive_layer_weights)
         scaled_competitive_layer_weights = inversed_competitive_layer_weights / np.amax(inversed_competitive_layer_weights, axis = 0)
 
-        tmp_label = model.cluster_label.copy().reshape(n_rows, n_cols)
+        tmp_label = model._nodes_label.copy().reshape(n_rows, n_cols)
 
         distribution_maps_data = []
         visualization_map_data = []
@@ -170,7 +170,7 @@ def get_model(model_id):
 
         fitted_model = {
             "inversedCompetitiveWeights": inversed_competitive_layer_weights.tolist(),
-            "nodesLabel": model.node_label.tolist()
+            "nodesLabel": model._node_label.tolist()
         }   
 
         success_message.add("fitted_model", fitted_model)
