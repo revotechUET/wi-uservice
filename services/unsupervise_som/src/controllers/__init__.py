@@ -87,7 +87,7 @@ def get_model(model_id):
         err_message = ml_models.result.ErrorResult()
         return err_message()
     else:
-        # print(model.named_steps)
+        print(model.named_steps)
         success_message = ml_models.result.SuccessResult()
         scaler = model.named_steps['minmax-scaler']
         model = model.named_steps['model']
@@ -97,12 +97,7 @@ def get_model(model_id):
 
         inversed_competitive_layer_weights = scaler.inverse_transform(model._competitive_layer_weights)
         scaled_competitive_layer_weights = inversed_competitive_layer_weights / np.amax(inversed_competitive_layer_weights, axis = 0)
-        print("--------------------------")
-        bug = vars(model)
-        for item in bug:
-            print(item, ':', bug[item])
-        print("---------------------------")
-        tmp_label = model._nodes_label.copy().reshape(n_rows, n_cols)
+        tmp_label = model.cluster_label.copy().reshape(n_rows, n_cols)
         distribution_maps_data = []
         visualization_map_data = []
 
@@ -173,7 +168,7 @@ def get_model(model_id):
 
         fitted_model = {
             "inversedCompetitiveWeights": inversed_competitive_layer_weights.tolist(),
-            "nodesLabel": model._nodes_label.tolist(),
+            "nodesLabel": model.cluster_label.tolist(),
         }   
 
         success_message.add("fitted_model", fitted_model)
