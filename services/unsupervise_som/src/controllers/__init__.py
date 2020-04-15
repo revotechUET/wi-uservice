@@ -97,9 +97,11 @@ def get_model(model_id):
 
         inversed_competitive_layer_weights = scaler.inverse_transform(model._competitive_layer_weights)
         scaled_competitive_layer_weights = inversed_competitive_layer_weights / np.amax(inversed_competitive_layer_weights, axis = 0)
+        print("--------------------------")
         bug = vars(model)
         for item in bug:
             print(item, ':', bug[item])
+        print("---------------------------")
         tmp_label = model._nodes_label.copy().reshape(n_rows, n_cols)
         distribution_maps_data = []
         visualization_map_data = []
