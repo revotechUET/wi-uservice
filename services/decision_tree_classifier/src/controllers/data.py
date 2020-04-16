@@ -74,6 +74,8 @@ def get_data_by_bucket_id(bucket_id):
         config.logger.error(traceback.print_exc())
         return None, None
     else:
+        print("--------feature----------" + features)
+        print('-----------target--------' + target)
         return features, target
 
 def get_all_buckets():

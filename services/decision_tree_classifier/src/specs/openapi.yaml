@@ -272,6 +272,7 @@ paths:
                 properties:
                   message:
                     type: "string"
+              - $ref: "#/definitions/Curve"
             default:
               description: "Unexpected error"
               schema:
