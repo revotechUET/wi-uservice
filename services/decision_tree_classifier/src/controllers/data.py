@@ -63,6 +63,7 @@ def delete(bucket_id):
     else:
         return {"message": "Delete success"}, 201
 
+@parse_body_request
 def get_data_by_bucket_id(bucket_id):
     try:
         doc = db.training_data.find_one({'bucket_id': bucket_id})

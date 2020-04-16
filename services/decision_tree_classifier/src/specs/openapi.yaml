@@ -251,15 +251,31 @@ paths:
             $ref: "#/definitions/Error"
 
   
-  /bucket/list:
+  /bucket/get_data/{bucket_id}:
     get:
-      operationId: src.controllers.get_list_buckets
-      description: Return all buckets in database
+      operationId: src.controllers.data.get_data_by_bucket_id
+      description: Return data in bucket
+      tags :
+        - model
+      parameters:
+        - name: bucket_id
+          in : paths
+          description: Bucket ID
+          type: string
+          required: true
       responses:
-        200:
-          description: Get list bucket successfully
+        201:
+          description: "Get weights successfully"
           schema:
-            $ref: '#/definitions/Error'
+            allOf:
+              - type: "object"
+                properties:
+                  message:
+                    type: "string"
+            default:
+              description: "Unexpected error"
+              schema:
+                $ref: "#/definitions/Error"
           
 definitions:
   Error:
