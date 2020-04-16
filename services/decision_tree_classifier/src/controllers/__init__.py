@@ -44,6 +44,8 @@ def predict(model_id, features):
 @helper.parse_body_request
 def train_by_bucket_data(model_id, bucket_id):
     features, target = get_data_by_bucket_id(bucket_id)
+    print("-------------Feature-----------" + features)
+    print("--------------Target------------" + target)
     features = features.T
     try:
         result_ml = helper.model_train(model_id, features, target)
