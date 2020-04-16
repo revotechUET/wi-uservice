@@ -250,6 +250,16 @@ paths:
           schema:
             $ref: "#/definitions/Error"
 
+  
+  /bucket/list:
+    get:
+      operationId: src.controllers.get_list_buckets
+      description: Return all buckets in database
+      responses:
+        200:
+          description: Get list bucket successfully
+          schema:
+            $ref: '#/definitions/Error'
           
 definitions:
   Error:
