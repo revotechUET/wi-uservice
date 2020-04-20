@@ -50,7 +50,7 @@ def train_by_bucket_data(model_id, bucket_id):
         config.logger.error(str(err))
         config.logger.error(traceback.print_exc())
         # err_message = ml_models.result.ErrorResult()
-        return err
+        return {"Error" : err}
     else:
         success_message = ml_models.get_result(model_id)(**result_ml)
         return success_message()
