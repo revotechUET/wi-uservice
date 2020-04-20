@@ -49,9 +49,8 @@ def train_by_bucket_data(model_id, bucket_id):
     except Exception as err:
         config.logger.error(str(err))
         config.logger.error(traceback.print_exc())
-        # err_message = ml_models.result.ErrorResult()
-        err_message = {"Error" : str(err)}
-        return json.dumps(err_message)
+        # err_message = ml_models.result.ErrorResult()        
+        return {"message": str(err)}, 400
     else:
         success_message = ml_models.get_result(model_id)(**result_ml)
         return success_message()
