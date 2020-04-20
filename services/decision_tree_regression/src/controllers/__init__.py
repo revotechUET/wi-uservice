@@ -1,5 +1,5 @@
 import secrets
-
+import json
 from src import model_helper as helper
 from src import config
 from src import ml_models
@@ -50,7 +50,8 @@ def train_by_bucket_data(model_id, bucket_id):
         config.logger.error(str(err))
         config.logger.error(traceback.print_exc())
         # err_message = ml_models.result.ErrorResult()
-        return {"Error" : err}, 400
+        err_message = {"Error" : str(err)}
+        return json.dumps(err_message)
     else:
         success_message = ml_models.get_result(model_id)(**result_ml)
         return success_message()
