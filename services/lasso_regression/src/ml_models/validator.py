@@ -13,7 +13,7 @@ class BaseValidator(object):
         assert self.props is not None, "Empty predefined property list. Predefined properties are not set"
         for prop in self.props:
             if prop["name"] in kwargs:
-                setattr(self, 'prop_'+prop["name"], type_enforce( kwargs[prop["type"]], kwargs[prop["name"]] ) )
+                setattr(self, 'prop_'+prop["name"], type_enforce( prop["type"], kwargs[prop["name"]] ) )
 
     def __call__(self):
         assert self.props is not None, "Empty predefined property list. Predefined properties are not set"
