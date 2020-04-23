@@ -50,14 +50,18 @@ def train_by_bucket_data(model_id, bucket_id):
     except Exception as err:
         config.logger.error(str(err))
         config.logger.error(traceback.print_exc())
-        # err_message = ml_models.result.ErrorResult()
-        return {"message": str(err)}, 400
+        err_message = ml_models.result.ErrorResult()
+        return err_message()
     else:
         success_message = ml_models.get_result(model_id)(**result_ml)
         return success_message()
+
 @helper.parse_body_request
 def get_list_buckets():
-    return get_all_buckets()
-  
-def dummy():
-    return {"message": "Are you trying to access Neural Network Regression"}, 201
+    buckets = get_all_buckets()
+    return buckets
+
+
+ 
+
+ 
