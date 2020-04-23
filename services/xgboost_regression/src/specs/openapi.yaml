@@ -295,7 +295,7 @@ definitions:
       model_id:
         type: "string"
         example: "test_xgboost_01"
-      n_estimators:
+      n_estimator:
         type: "integer"
         example: 100
       max_depth:
