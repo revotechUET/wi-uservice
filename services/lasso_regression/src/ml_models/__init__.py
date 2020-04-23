@@ -11,7 +11,7 @@ from sklearn.preprocessing import PolynomialFeatures
 from src import config
 from . import result
 from . import validator
-import model_options
+from . import model_options
 
 def get_component_from_module(name_component, module):
     sub_components = dir(module)
