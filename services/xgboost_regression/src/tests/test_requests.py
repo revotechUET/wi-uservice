@@ -11,7 +11,7 @@ def test_create(port):
   model_id = 'test_xgboost_01'
   body = {
     'model_id': model_id,
-    'n_estiamtors': 100,
+    'n_estimators': 100,
     'max_depth': 3,
     'gamma': 0.01,
     'booster': 'gbtree',

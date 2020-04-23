@@ -250,16 +250,17 @@ paths:
           schema:
             $ref: "#/definitions/Error"
 
-  
+
   /bucket/list:
     get:
       operationId: src.controllers.get_list_buckets
-      description: Return all buckets in database
+      description: Return all buckets in database 
       responses:
         200:
-          description: Get list bucket successfully
+          description: Get list bucket in database
           schema:
             $ref: '#/definitions/Error'
+        
           
 definitions:
   Error:
@@ -294,7 +295,7 @@ definitions:
       model_id:
         type: "string"
         example: "test_xgboost_01"
-      n_estiamtors:
+      n_estimators:
         type: "integer"
         example: 100
       max_depth:
@@ -308,10 +309,10 @@ definitions:
         example: gbtree
       reg_alpha:
         type: "number"
-        example: 0.1
+        example: 0.0
       reg_lamda:
         type: "number"
-        example: 1.1
+        example: 1.0
       random_state:
         type: "integer"
         example: 1

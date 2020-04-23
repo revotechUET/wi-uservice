@@ -7,7 +7,7 @@ from .xgboost_estimator import WiEstimator as XgboostEstimator
 
 XgboostParameters = [
     {
-        "name": "n_estiamtors",
+        "name": "n_estimators",
         "type": int
     },
     {

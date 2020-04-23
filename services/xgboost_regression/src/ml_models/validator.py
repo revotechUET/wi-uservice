@@ -1,3 +1,9 @@
+def type_enforce(type, value):
+    if type == int or type == float or type == str:
+        return type(value)
+    else:
+        return value
+
 class BaseValidator(object):
     # def __init__(self, **kwargs):
     #     self.props = None
@@ -7,7 +13,7 @@ class BaseValidator(object):
         assert self.props is not None, "Empty predefined property list. Predefined properties are not set"
         for prop in self.props:
             if prop["name"] in kwargs:
-                setattr(self, 'prop_'+prop["name"], kwargs[prop["name"]])
+                setattr(self, 'prop_'+prop["name"], type_enforce( kwargs[prop["type"]], kwargs[prop["name"]] ) )
 
     def __call__(self):
         assert self.props is not None, "Empty predefined property list. Predefined properties are not set"
@@ -20,4 +26,3 @@ class BaseValidator(object):
             return_params[prop["name"]] = getattr(self, prop_name)
 
         return return_params
-
