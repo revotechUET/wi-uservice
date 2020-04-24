@@ -3,7 +3,6 @@ def type_enforce(type, value):
         return type(value)
     else:
         return value
-
 class BaseValidator(object):
     # def __init__(self, **kwargs):
     #     self.props = None
