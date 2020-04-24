@@ -46,8 +46,19 @@ def model_train(model_id, features, target):
     x_test, y_test = features, target
     model.fit(x_train, y_train)
     y_pred = model.predict(x_test)
+
     result["mean_squared_error"] = metrics.mean_squared_error(y_test, y_pred)
     result["mean_absolute_error"] = metrics.mean_absolute_error(y_test, y_pred)
+
+    try:
+        train_loss = model.named_steps['model'].lpath['train']
+        val_loss = model.named_steps['model'].lpath['val']
+    except Exception:
+        train_loss = []
+        val_loss = []
+    
+    result["train_loss"] = train_loss
+    result["val_loss"] = val_loss
     ml_models.save_model(model, model_path)
 
     return result

@@ -17,7 +17,12 @@ def create(bucket_id, dims):
         bucket = {"bucket_id": bucket_id, "dims": dims, "data": []}
         col = db["training_data"]
         if col.find_one({"bucket_id": bucket_id}) is not None:
-          return {"message": "Bucket data has been existed"}, 400
+          db.training_data.find_one_and_update(
+              {"bucket_id": bucket_id},
+              {"$set": {"data": [],"dims" : dims}}
+           )
+          return {"message": "Bucket data refresh"}, 201
+          #return {"message": "Bucket data has been existed"}, 400
         col.insert_one(bucket)
         #bucket_id = col.insert_one(bucket).inserted_id
     except Exception as err:
@@ -73,14 +78,9 @@ def get_data_by_bucket_id(bucket_id):
 
 def get_all_buckets():
     try:
-        buckets = db.training_data.distinct("bucket_id")
-        dim = db.training_data.distinct("dim")
         to_return = []
-        for i in range(0, len(buckets)):
-            tmp = []
-            tmp.append(buckets[i])
-            tmp.append(dim[i])
-            to_return.append(tmp)
+        for bucket in db.training_data.find():
+            to_return.append([bucket["bucket_id"], bucket["dims"]])
     except Exception as err:
         config.logger.error(traceback.print_exc())
         return None

@@ -11,7 +11,7 @@ from sklearn.preprocessing import PolynomialFeatures
 from src import config
 from . import result
 from . import validator
-
+from . import model_options
 
 def get_component_from_module(name_component, module):
     sub_components = dir(module)
@@ -63,12 +63,23 @@ def build_model(model_type, params):
     assert (model_type in support_type), 'Expected one of value {}'.format(','.join(support_type))
 
     constructorFunc = model_constructors[model_type]
-
-    estimator = Pipeline([
-        ('minmax-scaler', MinMaxScaler()),
-        ('standard-scaler', StandardScaler()),
-        ("model", constructorFunc(**params))
-    ])
+    try:
+        if model_options.SINGLE_STEP_PIPELINE:
+            estimator = Pipeline([
+                ("model", constructorFunc(**params))
+            ])
+        else:
+            estimator = Pipeline([
+                ('minmax-scaler', MinMaxScaler()),
+                ('standard-scaler', StandardScaler()),
+                ("model", constructorFunc(**params))
+            ])
+    except Exception:
+        estimator = Pipeline([
+            ('minmax-scaler', MinMaxScaler()),
+            ('standard-scaler', StandardScaler()),
+            ("model", constructorFunc(**params))
+        ])
     return estimator
 
 def save_model(model, save_path='./'):
