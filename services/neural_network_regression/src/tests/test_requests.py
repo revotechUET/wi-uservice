@@ -16,7 +16,8 @@ def test_create(port):
     'max_iter': 100,
     'learning_rate_init': 0.005,
     'tol': 0.00030,
-    'hidden_layer_sizes': [10, 10]
+    'hidden_layer_sizes': [10, 10],
+    'random_state': 17
   }
   
   res = requests.post(base_url + '/model/create/neural_network',

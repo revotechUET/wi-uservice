@@ -315,3 +315,6 @@ definitions:
         items:
           type: integer
         example: [10, 10]
+      random_state:
+        type: "integer"
+        example: 17

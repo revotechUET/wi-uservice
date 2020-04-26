@@ -30,6 +30,10 @@ NeuralNetworkParameters = [
         "name": "hidden_layer_sizes",
         "type": List
     },
+    {
+        "name": "random_state",
+        "type": int
+    },
 ]
 
 class NeuralNetworkValidator(validator.BaseValidator):
