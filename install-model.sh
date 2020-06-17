@@ -24,4 +24,11 @@ else
     #cp -n services/$MODEL/src/ml_models/models/${MODELNAME}_Estimator.py ./model-specs/$MODEL
     cp ./model-specs/$MODEL/${MODEL_FILENAME}_estimator.py services/$MODEL/src/ml_models/models
     mkdir services/$MODEL/static
+    touch services/$MODEL/static/donot.remove
+fi
+
+if [ -f ./model-specs/$MODEL/model_options.py ]; then
+    cp ./model-specs/$MODEL/model_options.py services/$MODEL/src/ml_models
+else 
+    echo "SINGLE_STEP_PIPELINE = False" > services/$MODEL/src/ml_models/model_options.py
 fi
